@@ -34,6 +34,10 @@ const StyledSidebar = styled.aside`
       border: none;
       border-radius: ${p => p.theme.br};
       color: hsl(${p => p.theme.white});
+
+      :focus {
+        outline-color: hsl(${p => p.theme.white});
+      }
     }
   }
 
@@ -48,14 +52,31 @@ const StyledSidebar = styled.aside`
   }
 
   button {
-    background-color: hsl(${p => p.theme.lightGray});
+    background-color: hsl(${p => p.theme.gray});
     border-radius: ${p => p.theme.br};
-    border: none;
+    border: 2px solid hsl(${p => p.theme.lightGray});
     padding: 0.25rem 0.5rem;
-    color: hsl(${p => p.theme.white});
+    color: hsl(${p => p.theme.lighterGray});
     margin: 0.5rem 0;
     margin-right: 0.5rem;
     font-size: inherit;
+    transition: all 0.1s;
+
+    :hover {
+      background-color: hsl(${p => p.theme.lighterGray});
+      color: hsl(${p => p.theme.gray});
+      border-color: hsl(${p => p.theme.lighterGray});
+    }
+
+    :focus {
+      color: hsl(${p => p.theme.lighterGray});
+      border-color: hsl(${p => p.theme.lighterGray});
+      outline: none;
+    }
+
+    :hover:focus {
+      color: hsl(${p => p.theme.gray});
+    }
   }
 
   .save {
