@@ -25,7 +25,7 @@ const Code = ({ code, plugins, language }) => {
 
   useEffect(() => {
     highlight();
-  }, [code, language]);
+  }, [code, plugins, language]);
 
   const highlight = () => {
     if (ref && ref.current) {

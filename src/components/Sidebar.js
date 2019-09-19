@@ -2,32 +2,31 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 
 import { AppContext } from '../store/context';
-import { languageTypes, actionTypes } from '../store/types';
+import { languageTypes, actionTypes, pluginTypes } from '../store/types';
 import Slider from './Slider';
 
 const StyledSidebar = styled.aside`
   max-width: ${p => p.theme.sidebarWidth}px;
   background-color: hsl(${p => p.theme.gray});
   color: hsl(${p => p.theme.white});
-
-  h2 {
-    text-align: center;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 0 1rem;
 
   label {
-    margin: 0.5rem auto;
-
-    &.standalone {
-      margin-left: 0.5rem;
-    }
+    margin: 0.5rem 0;
   }
 
-  div.select {
+  label.select {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: baseline;
 
     select {
-      padding: 0.25rem 0.5rem;
+      padding: 0.25rem;
+      width: 10rem;
+      text-align: center;
       font-size: 1rem;
       background: hsl(${p => p.theme.lightGray});
       border: none;
@@ -43,20 +42,38 @@ const Sidebar = () => {
   return (
     <StyledSidebar>
       <h2>Settings</h2>
-      <div className="select">
+      <label className="select">
         <select
+          defaultValue={state.language}
           onChange={e =>
             dispatch({ type: actionTypes.LANGUAGE, payload: e.target.value })
           }
         >
           {Object.keys(languageTypes).map(key => (
-            <option key={key} value={languageTypes[key.code]}>
+            <option key={key} value={languageTypes[key].code}>
               {languageTypes[key].name}
+            </option>
+          ))}
+        </select>
+        <span>Language</span>
+      </label>
+      <label className="select">
+        <select
+          defaultValue={state.plugin}
+          onChange={e =>
+            dispatch({ type: actionTypes.PLUGIN, payload: e.target.value })
+          }
+        >
+          <option value=""></option>
+          {Object.keys(pluginTypes).map(key => (
+            <option key={key} value={pluginTypes[key].code}>
+              {pluginTypes[key].name}
             </option>
           ))}
           }
         </select>
-      </div>
+        <span>Extras</span>
+      </label>
       <Slider
         title="Angle"
         unit="&deg;"

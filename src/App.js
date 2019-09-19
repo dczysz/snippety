@@ -1,7 +1,7 @@
 import React, { useReducer, useEffect } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 
-import { languageTypes } from './store/types';
+import { languageTypes, pluginTypes } from './store/types';
 import { reducer } from './store/reducer';
 import { AppContext } from './store/context';
 import Preview from './components/Preview';
@@ -15,7 +15,7 @@ const theme = {
   black: '70, 8%, 15%',
   gray: '220, 13%, 18%',
   lightGray: '220, 13%, 32%',
-  bs: '0 4px 32px #27282288, 0 4px 8px #272822aa', //TODO update after initialization like bg
+  bs: '0 4px 32px #27282288, 0 4px 8px #272822aa', //TODO update after initialization like bg to use colors
   titleBarHeight: '1.75rem',
 };
 theme.bg = theme.lightGray.slice();
@@ -43,6 +43,7 @@ const initialState = {
   paddingX: 100,
   ratio: null,
   language: languageTypes.JS.code,
+  plugin: pluginTypes.LINE_NUMBERS.code,
 };
 
 const App = () => {

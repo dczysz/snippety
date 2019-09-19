@@ -2,7 +2,7 @@ export const languageTypes = {
   JS: { name: 'JavaScript', code: 'js' },
   CSS: { name: 'CSS', code: 'css' },
   HTML: { name: 'HTML', code: 'html' },
-  MARKUP: { name: 'MARKUP', code: 'markup' },
+  MARKUP: { name: 'Markup', code: 'markup' },
 };
 
 export const actionTypes = {
@@ -15,4 +15,8 @@ export const actionTypes = {
   PADDING_Y: 'PADDING_Y',
   RATIO: 'RATIO',
   LANGUAGE: 'LANGUAGE',
+};
+
+export const pluginTypes = {
+  LINE_NUMBERS: { name: 'Line Numbers', code: 'line-numbers' },
 };

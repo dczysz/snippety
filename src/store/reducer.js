@@ -1,49 +1,56 @@
+import { actionTypes } from './types';
+
 export const reducer = (state, action) => {
   switch (action.type) {
-    case 'INPUT':
+    case actionTypes.INPUT:
       return {
         ...state,
         input: action.payload,
       };
-    case 'ANGLE':
+    case actionTypes.ANGLE:
       return {
         ...state,
         angle: action.payload,
       };
-    case 'HUE':
+    case actionTypes.HUE:
       return {
         ...state,
         hue: action.payload,
       };
-    case 'SATURATION':
+    case actionTypes.SATURATION:
       return {
         ...state,
         saturation: action.payload,
       };
-    case 'LIGHTNESS':
+    case actionTypes.LIGHTNESS:
       return {
         ...state,
         lightness: action.payload,
       };
-    case 'PADDING_X':
+    case actionTypes.PADDING_X:
       return {
         ...state,
         paddingX: action.payload,
       };
-    case 'PADDING_Y':
+    case actionTypes.PADDING_Y:
       return {
         ...state,
         paddingY: action.payload,
       };
-    case 'RATIO':
+    case actionTypes.RATIO:
       return {
         ...state,
         ratio: action.payload,
       };
-    case 'LANGUAGE':
+    case actionTypes.LANGUAGE:
       return {
         ...state,
         language: action.payload,
+      };
+    case actionTypes.PLUGIN:
+      return {
+        ...state,
+        plugin: action.payload,
       };
     default:
       console.error(

@@ -8,16 +8,21 @@ const StyledSlider = styled.label`
 
   input {
     width: 100%;
+    margin: 0;
   }
 
   span {
-    width: 3.5rem;
+    width: 4rem;
     text-align: center;
-    margin: 0 0.5rem;
   }
 
   span:first-of-type {
-    width: auto;
+    text-align: left;
+    margin-right: 0.5rem;
+  }
+  span:last-of-type {
+    margin-left: 0.5rem;
+    text-align: right;
   }
 `;
 
