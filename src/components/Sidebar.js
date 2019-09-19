@@ -48,7 +48,8 @@ const StyledSidebar = styled.aside`
 
   hr {
     width: 100%;
-    margin-top: 1rem;
+    margin: 1rem 0;
+    border: 0.5px solid hsl(${p => p.theme.lightGray});
   }
 
   button {
@@ -80,9 +81,7 @@ const StyledSidebar = styled.aside`
   }
 
   .save {
-    h2 {
-      margin-top: 1rem;
-    }
+    margin-top: 1rem;
   }
 
   svg {
@@ -104,11 +103,6 @@ const Sidebar = () => {
     console.log('Saving...');
     saveImg(document.querySelector('.content'), format);
   };
-
-  // {Object.keys(icons).map(iconKey => {
-  //   const Svg = icons[iconKey];
-  //   return <Svg />;
-  // })}
 
   return (
     <StyledSidebar>
