@@ -1,8 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import styled from 'styled-components';
 
 import { AppContext } from '../store/context';
 import { languageTypes, actionTypes, pluginTypes } from '../store/types';
+import saveImg from '../util/saveImg';
 import Slider from './Slider';
 
 const StyledSidebar = styled.aside`
@@ -34,15 +35,52 @@ const StyledSidebar = styled.aside`
       color: hsl(${p => p.theme.white});
     }
   }
+
+  label.standalone {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  hr {
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  button {
+    background-color: hsl(${p => p.theme.lightGray});
+    border-radius: ${p => p.theme.br};
+    border: none;
+    padding: 0.25rem 0.5rem;
+    color: hsl(${p => p.theme.white});
+    margin: 0.5rem 0;
+    margin-right: 0.5rem;
+  }
+
+  .save {
+    h2 {
+      margin-top: 1rem;
+    }
+  }
 `;
 
 const Sidebar = () => {
   const [state, dispatch] = useContext(AppContext);
+  const saveLinkRef = useRef();
+
+  const save = ({
+    target: {
+      dataset: { format },
+    },
+  }) => {
+    console.log('Saving...');
+    saveImg(document.querySelector('.content'), format);
+  };
 
   return (
     <StyledSidebar>
       <h2>Settings</h2>
       <label className="select">
+        <span>Language</span>
         <select
           defaultValue={state.language}
           onChange={e =>
@@ -55,9 +93,9 @@ const Sidebar = () => {
             </option>
           ))}
         </select>
-        <span>Language</span>
       </label>
       <label className="select">
+        <span>Extras</span>
         <select
           defaultValue={state.plugin}
           onChange={e =>
@@ -72,7 +110,6 @@ const Sidebar = () => {
           ))}
           }
         </select>
-        <span>Extras</span>
       </label>
       <Slider
         title="Angle"
@@ -134,9 +171,34 @@ const Sidebar = () => {
           dispatch({ type: actionTypes.PADDING_Y, payload: e.target.value })
         }
       />
+
+      <hr />
+
       <label className="standalone">
-        Ratio: {state.ratio ? state.ratio.toFixed(2) : '?'}
+        <span>Size (px): </span>
+        <span>
+          {state.width && state.height
+            ? `${state.width} x ${state.height}`
+            : '?'}
+        </span>
       </label>
+      <label className="standalone">
+        <span>Ratio: </span>
+        <span>
+          {state.width && state.height
+            ? (state.width / state.height).toFixed(2)
+            : '?'}
+        </span>
+      </label>
+
+      <div className="save">
+        <button onClick={save} data-format="png">
+          Save PNG
+        </button>
+        <button onClick={save} data-format="jpg">
+          Save JPG
+        </button>
+      </div>
     </StyledSidebar>
   );
 };

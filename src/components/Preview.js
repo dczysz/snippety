@@ -16,7 +16,7 @@ const StyledPreview = styled.section`
     min-width: 50%;
     max-height: 80%;
     border-radius: 3px;
-    box-shadow: ${p => p.theme.bs};
+    /* box-shadow: ${p => p.theme.bs}; //! Doesn't work with html2canvas */
   }
 `;
 
@@ -46,12 +46,14 @@ const Preview = () => {
 
   useEffect(() => {
     const { offsetWidth, offsetHeight } = ref.current;
-    dispatch({ type: actionTypes.RATIO, payload: offsetWidth / offsetHeight });
-  }, [dispatch, state.input, state.paddingX, state.paddingY]);
+    dispatch({ type: actionTypes.WIDTH, payload: offsetWidth });
+    dispatch({ type: actionTypes.HEIGHT, payload: offsetHeight });
+  }, [dispatch, state.input, state.paddingX, state.paddingY, state.plugin]);
 
   return (
     <StyledPreview>
       <StyledBackgroundContainer
+        className="content"
         ref={ref}
         angle={state.angle}
         hue={state.hue}
