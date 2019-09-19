@@ -10,7 +10,7 @@ const StyledPreview = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  margin: 2rem 0;
 
   .content-container {
     min-width: 50%;

@@ -6,14 +6,13 @@ import { actionTypes } from '../store/types';
 import TitleBar from './TitleBar';
 
 const StyledCodeInput = styled.div`
-  width: 100%;
-  margin-top: 3rem;
+  margin: 4rem 0 2rem 0;
   box-shadow: ${p => p.theme.bs};
   border-radius: ${p => p.theme.br};
   position: relative;
 
   textarea {
-    width: 100%;
+    max-width: 800px;
     display: block;
     white-space: pre;
     min-height: 10rem;
@@ -24,7 +23,7 @@ const StyledCodeInput = styled.div`
     color: hsl(${p => p.theme.white});
     padding: 1rem;
     font-size: inherit;
-    resize: vertical;
+    resize: both;
     margin: 0;
   }
 

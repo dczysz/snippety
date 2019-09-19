@@ -26,9 +26,10 @@ const StyledApp = styled.div`
   height: 100vh;
 
   main {
-    padding: 0 4rem;
+    margin: 0 4rem;
     display: flex;
     flex-direction: column;
+    align-items: center;
   }
 `;
 
