@@ -37,10 +37,15 @@ export const reducer = (state, action) => {
         ...state,
         paddingY: action.payload,
       };
-    case actionTypes.RATIO:
+    case actionTypes.WIDTH:
       return {
         ...state,
-        ratio: action.payload,
+        width: action.payload,
+      };
+    case actionTypes.HEIGHT:
+      return {
+        ...state,
+        height: action.payload,
       };
     case actionTypes.LANGUAGE:
       return {

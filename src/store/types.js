@@ -1,7 +1,6 @@
 export const languageTypes = {
   JS: { name: 'JavaScript', code: 'js' },
   CSS: { name: 'CSS', code: 'css' },
-  HTML: { name: 'HTML', code: 'html' },
   MARKUP: { name: 'Markup', code: 'markup' },
 };
 
@@ -13,7 +12,8 @@ export const actionTypes = {
   LIGHTNESS: 'LIGHTNESS',
   PADDING_X: 'PADDING_X',
   PADDING_Y: 'PADDING_Y',
-  RATIO: 'RATIO',
+  WIDTH: 'WIDTH',
+  HEIGHT: 'HEIGHT',
   LANGUAGE: 'LANGUAGE',
 };
 
