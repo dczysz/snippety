@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const StyledTitleBar = styled.div`
   height: ${p => p.theme.titleBarHeight};
-  background: #dddd;
+  background: hsla(${p => p.theme.white}, 0.8);
   display: flex;
   align-items: center;
   padding-left: 0.25rem;
@@ -29,13 +29,13 @@ const StyledTitleBar = styled.div`
   }
 
   ::before {
-    background: #f44;
+    background: #ff5f57;
   }
   span {
-    background: #9b3;
+    background: #ffbd2d;
   }
   ::after {
-    background: #fb5;
+    background: #27c93f;
   }
 `;
 

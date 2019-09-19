@@ -16,9 +16,8 @@ const StyledSlider = styled.label`
     text-align: center;
   }
 
-  span:first-of-type {
-    text-align: left;
-    margin-right: 0.5rem;
+  svg {
+    margin-right: 1rem;
   }
   span:last-of-type {
     margin-left: 0.5rem;
@@ -29,7 +28,7 @@ const StyledSlider = styled.label`
 const Slider = props => {
   return (
     <StyledSlider title={props.title}>
-      <span>{props.title.substr(0, 1)}</span>
+      <props.icon />
       <input type="range" {...props} />
       <span>{props.value + props.unit}</span>
     </StyledSlider>

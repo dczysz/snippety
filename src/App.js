@@ -11,7 +11,7 @@ import CodeInput from './components/CodeInput';
 const theme = {
   sidebarWidth: 300,
   br: '4px',
-  white: '60, 30%, 96%',
+  white: '260, 6%, 91%',
   black: '70, 8%, 15%',
   gray: '220, 13%, 18%',
   lightGray: '220, 13%, 32%',
@@ -34,14 +34,15 @@ const StyledApp = styled.div`
 `;
 
 const initialState = {
-  input: `const app = () => {\n  console.log('test');\n};`,
+  input: '',
   angle: 10,
   hue: 250,
   saturation: 100,
   lightness: 50,
   paddingY: 100,
   paddingX: 100,
-  ratio: null,
+  width: null,
+  height: null,
   language: languageTypes.JS.code,
   plugin: pluginTypes.LINE_NUMBERS.code,
 };

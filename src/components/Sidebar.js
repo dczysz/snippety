@@ -5,6 +5,7 @@ import { AppContext } from '../store/context';
 import { languageTypes, actionTypes, pluginTypes } from '../store/types';
 import saveImg from '../util/saveImg';
 import Slider from './Slider';
+import * as icons from '../assets/icons';
 
 const StyledSidebar = styled.aside`
   max-width: ${p => p.theme.sidebarWidth}px;
@@ -28,7 +29,7 @@ const StyledSidebar = styled.aside`
       padding: 0.25rem;
       width: 10rem;
       text-align: center;
-      font-size: 1rem;
+      font-size: inherit;
       background: hsl(${p => p.theme.lightGray});
       border: none;
       border-radius: ${p => p.theme.br};
@@ -54,12 +55,19 @@ const StyledSidebar = styled.aside`
     color: hsl(${p => p.theme.white});
     margin: 0.5rem 0;
     margin-right: 0.5rem;
+    font-size: inherit;
   }
 
   .save {
     h2 {
       margin-top: 1rem;
     }
+  }
+
+  svg {
+    height: 1.625rem;
+    width: auto;
+    fill: hsl(${p => p.theme.white});
   }
 `;
 
@@ -75,6 +83,11 @@ const Sidebar = () => {
     console.log('Saving...');
     saveImg(document.querySelector('.content'), format);
   };
+
+  // {Object.keys(icons).map(iconKey => {
+  //   const Svg = icons[iconKey];
+  //   return <Svg />;
+  // })}
 
   return (
     <StyledSidebar>
@@ -113,6 +126,7 @@ const Sidebar = () => {
       </label>
       <Slider
         title="Angle"
+        icon={icons.angle}
         unit="&deg;"
         min={0}
         max={360}
@@ -123,6 +137,7 @@ const Sidebar = () => {
       />
       <Slider
         title="Hue"
+        icon={icons.hue}
         unit="&deg;"
         min={0}
         max={360}
@@ -133,6 +148,7 @@ const Sidebar = () => {
       />
       <Slider
         title="Saturation"
+        icon={icons.saturation}
         unit="%"
         min={0}
         max={100}
@@ -143,6 +159,7 @@ const Sidebar = () => {
       />
       <Slider
         title="Lightness"
+        icon={icons.lightness}
         unit="%"
         min={0}
         max={100}
@@ -153,6 +170,7 @@ const Sidebar = () => {
       />
       <Slider
         title="X Padding"
+        icon={icons.x}
         unit="px"
         min={0}
         max={200}
@@ -163,6 +181,7 @@ const Sidebar = () => {
       />
       <Slider
         title="Y Padding"
+        icon={icons.y}
         unit="px"
         min={0}
         max={200}
@@ -175,7 +194,7 @@ const Sidebar = () => {
       <hr />
 
       <label className="standalone">
-        <span>Size (px): </span>
+        <span>Size (px):</span>
         <span>
           {state.width && state.height
             ? `${state.width} x ${state.height}`
@@ -183,7 +202,7 @@ const Sidebar = () => {
         </span>
       </label>
       <label className="standalone">
-        <span>Ratio: </span>
+        <span>Ratio:</span>
         <span>
           {state.width && state.height
             ? (state.width / state.height).toFixed(2)
