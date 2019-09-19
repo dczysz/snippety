@@ -5,10 +5,61 @@ const StyledSlider = styled.label`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
+  z-index: 1;
 
-  input {
+  /* Custom track to keep consistent cross-browser */
+  ::before {
+    content: '';
+    position: absolute;
+    height: 2px;
+    left: 2rem;
+    right: 3.2rem;
+    background: hsl(${p => p.theme.lightGray});
+    z-index: -1;
+  }
+
+  input[type='range'] {
     width: 100%;
     margin: 0;
+    -webkit-appearance: none;
+    background: transparent;
+
+    :focus {
+      outline: none;
+    }
+
+    /* Thumb */
+    ::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      border: 3px solid hsl(${p => p.theme.gray});
+      border-radius: 50%;
+      height: 1.25rem;
+      width: 1.25rem;
+      background: hsl(${p => p.theme.white});
+    }
+    ::-moz-range-thumb {
+      border: 3px solid hsl(${p => p.theme.gray});
+      border-radius: 50%;
+      height: 0.875rem;
+      width: 0.875rem;
+      background: hsl(${p => p.theme.white});
+    }
+
+    /* Track */
+    ::-webkit-slider-runnable-track {
+      align-self: flex-start;
+      border: none;
+    }
+    ::-ms-track {
+      width: 100%;
+      cursor: pointer;
+      background: transparent;
+      border-color: transparent;
+      color: transparent;
+    }
+    ::-moz-range-track {
+    }
   }
 
   span {
