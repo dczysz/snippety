@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const StyledTitleBar = styled.div`
   height: ${p => p.theme.titleBarHeight};
-  background: hsla(${p => p.theme.white}, 0.8);
+  background: hsla(${p => p.theme.white}, ${p => (p.title ? 0.8 : 0.9)});
   display: flex;
   align-items: center;
   padding-left: 0.25rem;
@@ -42,8 +42,7 @@ const StyledTitleBar = styled.div`
 const TitleBar = ({ title }) => {
   return (
     <StyledTitleBar title={title}>
-      {!title && <span />}
-      {title && <div>{title}</div>}
+      {title ? <div>{title}</div> : <span />}
     </StyledTitleBar>
   );
 };
