@@ -42,13 +42,11 @@ const StyledCodeInput = styled.div`
     justify-content: center;
     align-items: center;
     color: hsl(${p => p.theme.white});
-    border: 8px solid hsla(${p => p.theme.white}, 0.25);
-    border: none;
-    border-radius: ${p => p.theme.br};
     margin: 8px;
     pointer-events: none;
     opacity: ${p => (p.showHint ? 0.5 : 0)};
     font-size: 1.2rem;
+    transition: opacity 0.1s;
   }
 `;
 
