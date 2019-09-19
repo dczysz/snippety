@@ -15,6 +15,7 @@ const theme = {
   black: '70, 8%, 15%',
   gray: '220, 13%, 18%',
   lightGray: '220, 13%, 32%',
+  lighterGray: '220, 13%, 64%',
   bs: '0 4px 32px #27282288, 0 4px 8px #272822aa', //TODO update after initialization like bg to use colors
   titleBarHeight: '1.75rem',
 };

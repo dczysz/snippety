@@ -27,6 +27,23 @@ const StyledSlider = styled.label`
 
     :focus {
       outline: none;
+
+      ::-webkit-slider-thumb {
+        background: hsl(${p => p.theme.white});
+      }
+      ::-moz-range-thumb {
+        background: hsl(${p => p.theme.white});
+      }
+    }
+
+    :active,
+    :hover {
+      ::-webkit-slider-thumb {
+        background: hsl(${p => p.theme.white});
+      }
+      ::-moz-range-thumb {
+        background: hsl(${p => p.theme.white});
+      }
     }
 
     /* Thumb */
@@ -36,14 +53,16 @@ const StyledSlider = styled.label`
       border-radius: 50%;
       height: 1.25rem;
       width: 1.25rem;
-      background: hsl(${p => p.theme.white});
+      background: hsl(${p => p.theme.lighterGray});
+      transition: background 0.1s;
     }
     ::-moz-range-thumb {
       border: 3px solid hsl(${p => p.theme.gray});
       border-radius: 50%;
       height: 0.875rem;
       width: 0.875rem;
-      background: hsl(${p => p.theme.white});
+      background: hsl(${p => p.theme.lighterGray});
+      transition: background 0.1s;
     }
 
     /* Track */
