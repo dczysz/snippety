@@ -25,6 +25,10 @@ const StyledCodeInput = styled.div`
     font-size: inherit;
     resize: both;
     margin: 0;
+
+    :focus {
+      outline: none;
+    }
   }
 
   ::after {
@@ -38,11 +42,12 @@ const StyledCodeInput = styled.div`
     justify-content: center;
     align-items: center;
     color: hsl(${p => p.theme.white});
-    border: 8px solid hsla(${p => p.theme.white}, 0.8);
+    border: 8px solid hsla(${p => p.theme.white}, 0.25);
+    border: none;
     border-radius: ${p => p.theme.br};
     margin: 8px;
     pointer-events: none;
-    opacity: ${p => (p.showHint ? 0.8 : 0)};
+    opacity: ${p => (p.showHint ? 0.5 : 0)};
     font-size: 1.2rem;
   }
 `;
