@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 
 import { AppContext } from '../store/context';
+import { actionTypes } from '../store/types';
 import TitleBar from './TitleBar';
 
 const StyledCodeInput = styled.div`
@@ -55,7 +56,9 @@ const CodeInput = () => {
       <TitleBar title="Input" />
       <textarea
         value={state.input}
-        onChange={e => dispatch({ type: 'INPUT', payload: e.target.value })}
+        onChange={e =>
+          dispatch({ type: actionTypes.INPUT, payload: e.target.value })
+        }
         spellCheck={false}
       />
     </StyledCodeInput>

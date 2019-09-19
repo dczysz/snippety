@@ -1,9 +1,10 @@
 import React, { useContext, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 
+import { AppContext } from '../store/context';
+import { actionTypes } from '../store/types';
 import TitleBar from './TitleBar';
 import CodePreview from './CodePreview';
-import { AppContext } from '../store/context';
 
 const StyledPreview = styled.section`
   display: flex;
@@ -45,7 +46,7 @@ const Preview = () => {
 
   useEffect(() => {
     const { offsetWidth, offsetHeight } = ref.current;
-    dispatch({ type: 'RATIO', payload: offsetWidth / offsetHeight });
+    dispatch({ type: actionTypes.RATIO, payload: offsetWidth / offsetHeight });
   }, [dispatch, state.input, state.paddingX, state.paddingY]);
 
   return (

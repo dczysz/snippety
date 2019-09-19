@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 
 import { AppContext } from '../store/context';
-import { languageTypes } from '../store/types';
+import { languageTypes, actionTypes } from '../store/types';
 import Slider from './Slider';
 
 const StyledSidebar = styled.aside`
@@ -46,7 +46,7 @@ const Sidebar = () => {
       <div className="select">
         <select
           onChange={e =>
-            dispatch({ type: 'LANGUAGE', payload: e.target.value })
+            dispatch({ type: actionTypes.LANGUAGE, payload: e.target.value })
           }
         >
           {Object.keys(languageTypes).map(key => (
@@ -63,7 +63,9 @@ const Sidebar = () => {
         min={0}
         max={360}
         value={state.angle}
-        onChange={e => dispatch({ type: 'ANGLE', payload: e.target.value })}
+        onChange={e =>
+          dispatch({ type: actionTypes.ANGLE, payload: e.target.value })
+        }
       />
       <Slider
         title="Hue"
@@ -71,7 +73,9 @@ const Sidebar = () => {
         min={0}
         max={360}
         value={state.hue}
-        onChange={e => dispatch({ type: 'HUE', payload: e.target.value })}
+        onChange={e =>
+          dispatch({ type: actionTypes.HUE, payload: e.target.value })
+        }
       />
       <Slider
         title="Saturation"
@@ -80,7 +84,7 @@ const Sidebar = () => {
         max={100}
         value={state.saturation}
         onChange={e =>
-          dispatch({ type: 'SATURATION', payload: e.target.value })
+          dispatch({ type: actionTypes.SATURATION, payload: e.target.value })
         }
       />
       <Slider
@@ -89,7 +93,9 @@ const Sidebar = () => {
         min={0}
         max={100}
         value={state.lightness}
-        onChange={e => dispatch({ type: 'LIGHTNESS', payload: e.target.value })}
+        onChange={e =>
+          dispatch({ type: actionTypes.LIGHTNESS, payload: e.target.value })
+        }
       />
       <Slider
         title="X Padding"
@@ -97,7 +103,9 @@ const Sidebar = () => {
         min={0}
         max={200}
         value={state.paddingX}
-        onChange={e => dispatch({ type: 'PADDING_X', payload: e.target.value })}
+        onChange={e =>
+          dispatch({ type: actionTypes.PADDING_X, payload: e.target.value })
+        }
       />
       <Slider
         title="Y Padding"
@@ -105,7 +113,9 @@ const Sidebar = () => {
         min={0}
         max={200}
         value={state.paddingY}
-        onChange={e => dispatch({ type: 'PADDING_Y', payload: e.target.value })}
+        onChange={e =>
+          dispatch({ type: actionTypes.PADDING_Y, payload: e.target.value })
+        }
       />
       <label className="standalone">
         Ratio: {state.ratio ? state.ratio.toFixed(2) : '?'}
