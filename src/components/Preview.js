@@ -66,7 +66,7 @@ const Preview = () => {
           <TitleBar />
           <CodePreview
             code={state.input}
-            plugins={[state.plugin]}
+            plugin={state.plugin}
             language={state.language}
           />
         </div>
