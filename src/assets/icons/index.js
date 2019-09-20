@@ -5,4 +5,6 @@ import { ReactComponent as lightness } from './lightness.svg';
 import { ReactComponent as x } from './x.svg';
 import { ReactComponent as y } from './y.svg';
 
-export { angle, hue, saturation, lightness, x, y };
+import { ReactComponent as info } from './info.svg';
+
+export { angle, hue, saturation, lightness, x, y, info };
