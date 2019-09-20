@@ -1,5 +1,5 @@
-import React, { useReducer, useEffect } from 'react';
-import styled, { ThemeProvider } from 'styled-components';
+import React, { useReducer } from 'react';
+import { ThemeProvider } from 'styled-components';
 
 import { languageTypes, pluginTypes } from './store/types';
 import { reducer } from './store/reducer';
@@ -7,31 +7,9 @@ import { AppContext } from './store/context';
 import Preview from './components/Preview';
 import Sidebar from './components/Sidebar';
 import CodeInput from './components/CodeInput';
-
-const theme = {
-  sidebarWidth: 300,
-  br: '4px',
-  white: '220, 10%, 90%',
-  gray: '220, 13%, 18%',
-  lightGray: '220, 15%, 29%',
-  lighterGray: '220, 16%, 60%',
-  titleBarHeight: '1.75rem',
-};
-theme.bg = theme.lightGray.slice();
-theme.bs = `0 4px 32px hsla(${theme.gray}, 0.9), 0 4px 8px hsla(${theme.gray}, 0.75)`;
-
-const StyledApp = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 300px;
-  height: 100vh;
-
-  main {
-    margin: 0 4rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-`;
+import GlobalStyle from './components/styles/GlobalStyle';
+import StyledApp from './components/styles/App';
+import theme from './components/styles/theme';
 
 const initialState = {
   input: '',
@@ -50,15 +28,11 @@ const initialState = {
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  //! Temporary, move to head of index.html(?) when colors are finalized
-  useEffect(() => {
-    if (theme.bg) document.body.style.backgroundColor = `hsl(${theme.bg})`;
-  }, []);
-
   return (
     <AppContext.Provider value={[state, dispatch]}>
       <ThemeProvider theme={theme}>
         <StyledApp>
+          <GlobalStyle />
           <main>
             <CodeInput />
             <Preview />
