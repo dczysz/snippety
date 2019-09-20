@@ -62,6 +62,7 @@ const CodeInput = () => {
           dispatch({ type: actionTypes.INPUT, payload: e.target.value })
         }
         spellCheck={false}
+        aria-label="Code Input"
       />
     </StyledCodeInput>
   );
