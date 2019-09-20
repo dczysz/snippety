@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 
 import { AppContext } from '../store/context';
@@ -93,7 +93,6 @@ const StyledSidebar = styled.aside`
 
 const Sidebar = () => {
   const [state, dispatch] = useContext(AppContext);
-  const saveLinkRef = useRef();
 
   const save = ({
     target: {
