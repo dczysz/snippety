@@ -19,7 +19,7 @@ const Tooltip = styled.div`
 
   .row {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
   }
 
   ::before {

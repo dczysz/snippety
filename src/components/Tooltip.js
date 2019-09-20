@@ -15,12 +15,12 @@ const Tooltip = () => {
         <span>1.50</span>
       </div>
       <div className="row">
-        <span>1:1</span>
-        <span>1.00</span>
+        <span>4:3</span>
+        <span>1.330</span>
       </div>
       <div className="row">
-        <span>1:1</span>
-        <span>1.00</span>
+        <span>16:9</span>
+        <span>1.78</span>
       </div>
     </StyledTooltip>
   );
