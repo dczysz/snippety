@@ -17,7 +17,7 @@ const save = (el, type) => {
       );
 
       const link = document.createElement('a');
-      link.setAttribute('download', `snippy.${type}`);
+      link.setAttribute('download', `snippety.${type}`);
       link.setAttribute('href', uri);
       document.body.appendChild(link);
       link.click();
