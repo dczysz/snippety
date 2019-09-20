@@ -24,15 +24,8 @@ const Code = ({ code, plugin, language }) => {
   const ref = useRef();
 
   useEffect(() => {
-    highlight();
+    ref && ref.current && Prism.highlightElement(ref.current);
   }, [code, plugin, language]);
-
-  const highlight = () => {
-    if (ref && ref.current) {
-      console.log('[Code] highlight', code, plugin, language);
-      Prism.highlightElement(ref.current);
-    }
-  };
 
   return (
     <StyledCode className={plugin || ''} id="pre">
