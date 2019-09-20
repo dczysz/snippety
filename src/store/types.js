@@ -2,6 +2,7 @@ export const languageTypes = {
   JS: { name: 'JavaScript', code: 'js' },
   CSS: { name: 'CSS', code: 'css' },
   MARKUP: { name: 'Markup', code: 'markup' },
+  C_Like: { name: 'C-like', code: 'clike' },
 };
 
 export const actionTypes = {
