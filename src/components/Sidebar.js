@@ -16,6 +16,14 @@ const StyledSidebar = styled.aside`
   flex-direction: column;
   max-width: ${p => p.theme.sidebarWidth}px;
   padding: 0 1rem;
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+
+  h2 {
+    text-align: center;
+  }
 
   label {
     margin: 0.5rem 0;
