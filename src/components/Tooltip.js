@@ -16,7 +16,7 @@ const Tooltip = () => {
       </div>
       <div className="row">
         <span>4:3</span>
-        <span>1.330</span>
+        <span>1.33</span>
       </div>
       <div className="row">
         <span>16:9</span>
