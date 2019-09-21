@@ -12,6 +12,7 @@ const StyledSidebar = styled.aside`
   right: 0;
   top: 0;
   bottom: 0;
+  overflow-y: auto;
 
   h2 {
     text-align: center;

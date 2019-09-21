@@ -7,6 +7,7 @@ import Slider from './Slider';
 import Tooltip from './Tooltip';
 import * as icons from '../assets/icons';
 import StyledSidebar from './styles/Sidebar';
+import Footer from './Footer';
 
 const Sidebar = () => {
   const [state, dispatch] = useContext(AppContext);
@@ -157,6 +158,8 @@ const Sidebar = () => {
           Save JPG
         </button>
       </div>
+
+      <Footer />
     </StyledSidebar>
   );
 };
