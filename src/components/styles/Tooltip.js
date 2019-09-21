@@ -6,10 +6,10 @@ const Tooltip = styled.div`
   border-radius: ${p => p.theme.br};
   color: hsl(${p => p.theme.gray});
   left: calc(1.5rem + (var(--carat-size) * 0.5));
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   position: absolute;
   top: -1rem;
-  min-width: 7rem;
+  min-width: 8rem;
 
   .heading {
     font-weight: bold;
