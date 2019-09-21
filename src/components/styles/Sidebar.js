@@ -36,6 +36,13 @@ const StyledSidebar = styled.aside`
     margin: 0.5rem 0;
   }
 
+  label,
+  button,
+  select,
+  footer {
+    font-size: 0.8rem;
+  }
+
   label.select {
     align-items: baseline;
     display: flex;
@@ -79,7 +86,7 @@ const StyledSidebar = styled.aside`
 
       svg {
         fill: hsl(${p => p.theme.lighterGray});
-        height: 1.1rem;
+        height: 1.2em;
         transition: fill 0.1s;
       }
 
@@ -124,7 +131,6 @@ const StyledSidebar = styled.aside`
       color: hsl(${p => p.theme.lighterGray});
       margin: 0.5rem 0;
       margin-right: 0.5rem;
-      font-size: inherit;
       transition: all 0.1s;
 
       :hover {
