@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import Prism from 'prismjs';
 import 'prismjs/themes/prism-okaidia.css';
-import 'prismjs/plugins/line-numbers/prism-line-numbers';
+import 'prismjs/plugins/line-numbers/prism-line-numbers.min';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
 
 import StyledCodePreview from './styles/CodePreview';
