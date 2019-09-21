@@ -27,7 +27,7 @@ const StyledCodeInput = styled.div`
   }
 
   ::after {
-    content: 'Paste or type your code here';
+    content: 'Type or paste your code here';
     position: absolute;
     top: ${p => p.theme.titleBarHeight};
     right: 0;
