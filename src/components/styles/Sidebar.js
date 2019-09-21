@@ -15,9 +15,10 @@ const errorFade = keyframes`
 `;
 
 const StyledSidebar = styled.aside`
+  --color: hsl(${p => p.theme.lightestGray});
   align-items: stretch;
   background-color: hsl(${p => p.theme.gray});
-  color: hsl(${p => p.theme.white});
+  color: var(--color);
   display: flex;
   flex-direction: column;
   max-width: ${p => p.theme.sidebarWidth}px;
@@ -52,7 +53,7 @@ const StyledSidebar = styled.aside`
       background: hsl(${p => p.theme.lightGray});
       border: none;
       border-radius: ${p => p.theme.br};
-      color: hsl(${p => p.theme.white});
+      color: inherit;
       font-size: inherit;
       padding: 0.25rem;
       text-align: center;
@@ -85,7 +86,7 @@ const StyledSidebar = styled.aside`
       cursor: help;
 
       svg {
-        fill: hsl(${p => p.theme.lighterGray});
+        fill: var(--color);
         height: 1.2em;
         transition: fill 0.1s;
       }
@@ -93,7 +94,7 @@ const StyledSidebar = styled.aside`
       :hover,
       :focus {
         svg {
-          fill: hsl(${p => p.theme.white});
+          fill: var(--color);
         }
         outline: none;
       }
@@ -128,7 +129,7 @@ const StyledSidebar = styled.aside`
       border-radius: ${p => p.theme.br};
       border: 2px solid hsl(${p => p.theme.lightGray});
       padding: 0.25rem 0.5rem;
-      color: hsl(${p => p.theme.lighterGray});
+      color: var(--color);
       margin: 0.5rem 0;
       margin-right: 0.5rem;
       transition: all 0.1s;
@@ -160,7 +161,7 @@ const StyledSidebar = styled.aside`
   svg {
     height: 1.625rem;
     width: auto;
-    fill: hsl(${p => p.theme.white});
+    fill: var(--color);
   }
 `;
 
