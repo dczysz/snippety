@@ -6,6 +6,11 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  ::selection {
+    color: hsl(${p => p.theme.gray});
+    background-color: hsl(${p => p.theme.lighterGray});
+  }
+
   *,
   *::before,
   *::after {
