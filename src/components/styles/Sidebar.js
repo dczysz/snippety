@@ -1,4 +1,18 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const errorFade = keyframes`
+  0% {
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+`;
 
 const StyledSidebar = styled.aside`
   align-items: stretch;
@@ -128,6 +142,12 @@ const StyledSidebar = styled.aside`
       :hover:focus {
         color: hsl(${p => p.theme.gray});
       }
+    }
+
+    .error {
+      color: hsl(${p => p.theme.danger});
+      animation: ${errorFade} ${p => p.errorLife}ms;
+      opacity: 0;
     }
   }
 

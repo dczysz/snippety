@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 
 import { AppContext } from '../store/context';
 import { languageTypes, actionTypes, pluginTypes } from '../store/types';
@@ -11,6 +11,12 @@ import Footer from './Footer';
 
 const Sidebar = () => {
   const [state, dispatch] = useContext(AppContext);
+  const [error, setError] = useState(false);
+  const errorLife = 4000;
+
+  useEffect(() => {
+    error && setTimeout(() => setError(false), errorLife);
+  }, [error]);
 
   const save = ({
     target: {
@@ -18,11 +24,17 @@ const Sidebar = () => {
     },
   }) => {
     console.log('Saving...');
-    saveImg(document.querySelector('.content'), format);
+    setError(false);
+
+    try {
+      saveImg(document.querySelector('.content'), format);
+    } catch (err) {
+      setError(true);
+    }
   };
 
   return (
-    <StyledSidebar>
+    <StyledSidebar errorLife={errorLife}>
       <h2>Settings</h2>
       <label className="select">
         <span>Language</span>
@@ -157,6 +169,8 @@ const Sidebar = () => {
         <button onClick={save} data-format="jpg">
           Save JPG
         </button>
+
+        {error && <div className="error">Hmmm, that didn't work {error}</div>}
       </div>
 
       <Footer />

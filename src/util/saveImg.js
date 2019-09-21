@@ -23,7 +23,9 @@ const save = (el, type) => {
       link.click();
       document.body.removeChild(link);
     })
-    .catch(err => console.error(err));
+    .catch(err => {
+      throw new Error(err);
+    });
 };
 
 export default save;

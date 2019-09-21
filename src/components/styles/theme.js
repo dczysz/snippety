@@ -5,6 +5,7 @@ const theme = {
   gray: '220, 13%, 18%',
   lightGray: '220, 15%, 29%',
   lighterGray: '220, 16%, 60%',
+  danger: '338, 100%, 50%',
   titleBarHeight: '1.75rem',
 };
 theme.bs = `0 4px 32px hsla(${theme.gray}, 0.9), 0 4px 8px hsla(${theme.gray}, 0.75)`;
