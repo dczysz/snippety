@@ -17,7 +17,12 @@ const save = (el, type) => {
       );
 
       const link = document.createElement('a');
-      link.setAttribute('download', `snippety.${type}`);
+      const time = new Date()
+        .getTime()
+        .toString()
+        .substring(5);
+
+      link.setAttribute('download', `snippety-${time}.${type}`);
       link.setAttribute('href', uri);
       document.body.appendChild(link);
       link.click();
