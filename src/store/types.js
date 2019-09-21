@@ -16,8 +16,14 @@ export const actionTypes = {
   WIDTH: 'WIDTH',
   HEIGHT: 'HEIGHT',
   LANGUAGE: 'LANGUAGE',
+  PLUGIN: 'PLUGIN',
+  TITLE_BAR: 'TITLE_BAR',
 };
 
 export const pluginTypes = {
   LINE_NUMBERS: { name: 'Line Numbers', code: 'line-numbers' },
+};
+
+export const titleBarTypes = {
+  OSX: 'OSX',
 };

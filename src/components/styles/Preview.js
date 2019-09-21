@@ -9,7 +9,8 @@ const StyledPreview = styled.section`
   .content-container {
     min-width: 50%;
     max-height: 80%;
-    border-radius: 3px;
+    border-radius: ${p => p.theme.br};
+    overflow: hidden;
     /* box-shadow: ${p => p.theme.bs}; //! Doesn't work with html2canvas */
   }
 `;

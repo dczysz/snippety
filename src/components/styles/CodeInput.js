@@ -4,6 +4,7 @@ const StyledCodeInput = styled.div`
   margin: 4rem 0 2rem 0;
   box-shadow: ${p => p.theme.bs};
   border-radius: ${p => p.theme.br};
+  overflow: hidden;
   position: relative;
 
   textarea {
@@ -12,7 +13,6 @@ const StyledCodeInput = styled.div`
     white-space: pre;
     min-height: 10rem;
     min-width: 30rem;
-    border-radius: 0 0 ${p => p.theme.br} ${p => p.theme.br};
     border: none;
     background-color: hsl(${p => p.theme.gray});
     color: hsl(${p => p.theme.white});

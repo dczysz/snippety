@@ -1,7 +1,12 @@
 import React, { useContext, useState, useEffect } from 'react';
 
 import { AppContext } from '../store/context';
-import { languageTypes, actionTypes, pluginTypes } from '../store/types';
+import {
+  languageTypes,
+  actionTypes,
+  pluginTypes,
+  titleBarTypes,
+} from '../store/types';
 import saveImg from '../util/saveImg';
 import Slider from './Slider';
 import Tooltip from './Tooltip';
@@ -36,6 +41,8 @@ const Sidebar = () => {
   return (
     <StyledSidebar errorLife={errorLife}>
       <h2>Settings</h2>
+
+      {/* ---------- Dropdowns ---------- */}
       <label className="select">
         <span>Language</span>
         <select
@@ -68,6 +75,25 @@ const Sidebar = () => {
           }
         </select>
       </label>
+      <label className="select">
+        <span>Title Bar</span>
+        <select
+          defaultValue={state.titleBar}
+          onChange={e =>
+            dispatch({ type: actionTypes.TITLE_BAR, payload: e.target.value })
+          }
+        >
+          <option value=""></option>
+          {Object.keys(titleBarTypes).map(type => (
+            <option key={type} value={type}>
+              {type}
+            </option>
+          ))}
+          }
+        </select>
+      </label>
+
+      {/* ---------- Sliders ---------- */}
       <Slider
         title="Angle"
         icon={icons.angle}

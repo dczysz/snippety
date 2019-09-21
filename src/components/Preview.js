@@ -29,7 +29,7 @@ const Preview = () => {
         paddingX={state.paddingX}
       >
         <div className="content-container">
-          <TitleBar />
+          <TitleBar type={state.titleBar} />
           <CodePreview
             code={state.input}
             plugin={state.plugin}
