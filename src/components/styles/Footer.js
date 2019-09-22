@@ -5,6 +5,10 @@ const Footer = styled.footer`
   color: hsl(${p => p.theme.lighterGray});
   font-size: 0.9rem;
 
+  p {
+    line-height: 1.1;
+  }
+
   a {
     color: inherit;
   }
