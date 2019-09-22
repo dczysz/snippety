@@ -7,6 +7,10 @@ const Footer = () => (
   <StyledFooter>
     <hr />
     <p>
+      Inspiration from{' '}
+      <LinkBlank href="https://screenzy.io/">Screenzy.io</LinkBlank>
+    </p>
+    <p>
       Code highlighting by{' '}
       <LinkBlank href="https://prismjs.com/">PrismJS</LinkBlank>
     </p>
