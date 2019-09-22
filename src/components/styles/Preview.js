@@ -18,7 +18,10 @@ const StyledPreview = styled.section`
 const StyledBackgroundContainer = styled.div.attrs(p => ({
   style: {
     padding: `${p.paddingY}px ${p.paddingX}px`,
-    backgroundImage: `linear-gradient(
+    backgroundImage:
+      p.hue < 0
+        ? `url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMUlEQVQ4T2NkYGAQYcAP3uCTZhw1gGGYhAGBZIA/nYDCgBDAm9BGDWAAJyRCgLaBCAAgXwixzAS0pgAAAABJRU5ErkJggg==")`
+        : `linear-gradient(
       ${p.angle}deg,
       hsl(${p.hue}, ${p.saturation}%, ${p.lightness}%),
       hsl(
@@ -33,6 +36,7 @@ const StyledBackgroundContainer = styled.div.attrs(p => ({
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background-color: transparent;
 `;
 
 export default StyledPreview;

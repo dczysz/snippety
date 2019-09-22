@@ -32,7 +32,7 @@ const Sidebar = () => {
     setError(false);
 
     try {
-      saveImg(document.querySelector('.content'), format);
+      saveImg(document.querySelector('.content'), format, state.hue < 0);
     } catch (err) {
       setError(true);
     }
@@ -109,7 +109,7 @@ const Sidebar = () => {
         title="Hue"
         icon={icons.hue}
         unit="&deg;"
-        min={0}
+        min={-1}
         max={360}
         value={state.hue}
         onChange={e =>

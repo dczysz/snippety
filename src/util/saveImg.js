@@ -1,14 +1,28 @@
 import html2canvas from 'html2canvas';
 
-const save = (el, type) => {
+const save = (el, type, hideBackground) => {
   const options = {
     width: el.offsetWidth,
     height: el.offsetHeight,
-    background: 'transparent',
+    backgroundColor: 'transparent',
   };
+
+  // Hide background image if it's transparent
+  const initialBg = el.style.backgroundImage;
+  if (hideBackground) {
+    el.style.backgroundImage = 'none';
+  }
 
   html2canvas(el, options)
     .then(canvas => {
+      // Reset background
+      el.style.backgroundImage = initialBg;
+
+      // Display canvas in addition to prompting save
+      // if (process.env.NODE_ENV === 'development') {
+      //   document.body.prepend(canvas);
+      // }
+
       // https://stackoverflow.com/questions/11112321/
       const src = canvas.toDataURL(`image/${type};base64`);
       const uri = src.replace(
