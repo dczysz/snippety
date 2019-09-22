@@ -38,6 +38,21 @@ const Sidebar = () => {
     }
   };
 
+  const checkRatio = ratio => {
+    switch (ratio) {
+      case '1.00':
+        return '1:1';
+      case '1.50':
+        return '3:2';
+      case '1.33':
+        return '4:3';
+      case '1.78':
+        return '16:9';
+      default:
+        return '';
+    }
+  };
+
   return (
     <StyledSidebar errorLife={errorLife}>
       <h2>Settings</h2>
@@ -182,9 +197,15 @@ const Sidebar = () => {
           </button>
         </span>
         <span>
-          {state.width && state.height && state.height !== 0
-            ? (state.width / state.height).toFixed(2)
-            : '?'}
+          <span className="ratio-match">
+            {state.height !== 0 &&
+              checkRatio((state.width / state.height).toFixed(2))}
+          </span>
+          <span>
+            {state.width && state.height
+              ? (state.width / state.height).toFixed(2)
+              : '?'}
+          </span>
         </span>
       </label>
 

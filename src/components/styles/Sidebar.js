@@ -74,6 +74,10 @@ const StyledSidebar = styled.aside`
       display: flex;
     }
 
+    .ratio-match {
+      margin-right: 0.8rem;
+    }
+
     .tooltip-button {
       align-items: center;
       background: none;
