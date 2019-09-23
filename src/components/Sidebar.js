@@ -18,6 +18,7 @@ import Footer from './Footer';
 const Sidebar = () => {
   const [state, dispatch] = useContext(AppContext);
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
   const errorLife = 4000;
 
   useEffect(() => {
@@ -30,10 +31,13 @@ const Sidebar = () => {
     },
   }) => {
     console.log('Saving...');
+    setLoading(true);
     setError(false);
 
     try {
-      saveImg(document.querySelector('.content'), format, state.hue < 0);
+      saveImg(document.querySelector('.content'), format, state.hue < 0, () =>
+        setLoading(false)
+      );
     } catch (err) {
       setError(true);
     }
@@ -204,7 +208,8 @@ const Sidebar = () => {
           Save JPG
         </button>
 
-        {error && <div className="error">Hmmm, that didn't work {error}</div>}
+        {loading && <div className="loading">Saving...</div>}
+        {error && <div className="error">Hmmm, that didn't work </div>}
       </div>
 
       <Footer />

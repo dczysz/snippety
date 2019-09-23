@@ -1,6 +1,6 @@
 import html2canvas from 'html2canvas';
 
-const save = (el, type, hideBackground) => {
+const save = (el, type, hideBackground, callback) => {
   const options = {
     width: el.offsetWidth,
     height: el.offsetHeight,
@@ -41,6 +41,8 @@ const save = (el, type, hideBackground) => {
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
+
+      callback && callback();
     })
     .catch(err => {
       throw new Error(err);
