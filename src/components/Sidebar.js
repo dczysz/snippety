@@ -8,6 +8,7 @@ import {
   titleBarTypes,
 } from '../store/types';
 import saveImg from '../util/saveImg';
+import { checkRatio } from '../util/ratio';
 import Slider from './Slider';
 import Tooltip from './Tooltip';
 import * as icons from '../assets/icons';
@@ -35,21 +36,6 @@ const Sidebar = () => {
       saveImg(document.querySelector('.content'), format, state.hue < 0);
     } catch (err) {
       setError(true);
-    }
-  };
-
-  const checkRatio = ratio => {
-    switch (ratio) {
-      case '1.00':
-        return '1:1';
-      case '1.50':
-        return '3:2';
-      case '1.33':
-        return '4:3';
-      case '1.78':
-        return '16:9';
-      default:
-        return '';
     }
   };
 
@@ -197,10 +183,11 @@ const Sidebar = () => {
           </button>
         </span>
         <span>
-          <span className="ratio-match">
-            {state.height !== 0 &&
-              checkRatio((state.width / state.height).toFixed(2))}
-          </span>
+          {state.height !== 0 && (
+            <span className="ratio-match">
+              {checkRatio((state.width / state.height).toFixed(2))}
+            </span>
+          )}
           <span>
             {state.width && state.height
               ? (state.width / state.height).toFixed(2)
