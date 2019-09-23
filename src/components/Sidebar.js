@@ -2,10 +2,11 @@ import React, { useContext, useState, useEffect } from 'react';
 
 import { AppContext } from '../store/context';
 import {
-  languageTypes,
   actionTypes,
+  languageTypes,
   pluginTypes,
   titleBarTypes,
+  fontTypes,
 } from '../store/types';
 import saveImg from '../util/saveImg';
 import { checkRatio } from '../util/ratio';
@@ -95,6 +96,21 @@ const Sidebar = () => {
             </option>
           ))}
           }
+        </select>
+      </label>
+      <label className="select">
+        <span>Font</span>
+        <select
+          defaultValue={state.font}
+          onChange={e =>
+            dispatch({ type: actionTypes.FONT, payload: e.target.value })
+          }
+        >
+          {Object.keys(fontTypes).map(key => (
+            <option key={key} value={fontTypes[key].code}>
+              {fontTypes[key].name}
+            </option>
+          ))}
         </select>
       </label>
 

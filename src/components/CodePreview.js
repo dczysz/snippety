@@ -6,7 +6,7 @@ import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
 
 import StyledCodePreview from './styles/CodePreview';
 
-const Code = ({ code, plugin, language }) => {
+const Code = ({ code, plugin, language, font }) => {
   const ref = useRef();
 
   useEffect(() => {
@@ -14,7 +14,7 @@ const Code = ({ code, plugin, language }) => {
   }, [code, plugin, language]);
 
   return (
-    <StyledCodePreview className={plugin || ''} id="pre">
+    <StyledCodePreview id="pre" className={plugin || ''} font={font}>
       <code ref={ref} className={`language-${language}`}>
         {code.trim()}
       </code>

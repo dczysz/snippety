@@ -62,6 +62,11 @@ export const reducer = (state, action) => {
         ...state,
         titleBar: action.payload,
       };
+    case actionTypes.FONT:
+      return {
+        ...state,
+        font: action.payload,
+      };
     default:
       console.error(
         `No reducer function found for \`${action.type}\` (payload: \`${action.payload}\`)`

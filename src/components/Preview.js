@@ -34,6 +34,7 @@ const Preview = () => {
             code={state.input}
             plugin={state.plugin}
             language={state.language}
+            font={state.font}
           />
         </div>
       </StyledBackgroundContainer>

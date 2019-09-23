@@ -1,6 +1,12 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
+  @font-face {
+    font-family: 'DejaVu Sans Mono';
+    src: local('DejaVu Sans Mono'),
+      url('../../assets/fonts/DejaVuSansMono.ttf');
+  }
+
   html,
   body {
     box-sizing: border-box;
@@ -26,7 +32,7 @@ const GlobalStyle = createGlobalStyle`
   pre,
   code,
   textarea {
-    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-family: Consolas, Monaco, 'Lucida Console', 'Andale Mono', 'Ubuntu Mono', monospace;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }

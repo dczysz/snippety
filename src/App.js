@@ -1,7 +1,12 @@
 import React, { useReducer } from 'react';
 import { ThemeProvider } from 'styled-components';
 
-import { languageTypes, pluginTypes, titleBarTypes } from './store/types';
+import {
+  languageTypes,
+  pluginTypes,
+  titleBarTypes,
+  fontTypes,
+} from './store/types';
 import { reducer } from './store/reducer';
 import { AppContext } from './store/context';
 import Preview from './components/Preview';
@@ -24,6 +29,7 @@ const initialState = {
   language: languageTypes.JS.code,
   plugin: pluginTypes.LINE_NUMBERS.code,
   titleBar: titleBarTypes.OSX,
+  font: fontTypes.DEFAULT.code,
 };
 
 const App = () => {

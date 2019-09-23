@@ -18,6 +18,7 @@ export const actionTypes = {
   LANGUAGE: 'LANGUAGE',
   PLUGIN: 'PLUGIN',
   TITLE_BAR: 'TITLE_BAR',
+  FONT: 'FONT',
 };
 
 export const pluginTypes = {
@@ -26,4 +27,10 @@ export const pluginTypes = {
 
 export const titleBarTypes = {
   OSX: 'OSX',
+};
+
+export const fontTypes = {
+  DEFAULT: { name: 'Default', code: 'inherit' },
+  DEJAVU_SANS_MONO: { name: 'DejaVu Sans Mono', code: 'DejaVu Sans Mono' },
+  COURIER_NEW: { name: 'Courier New', code: 'Courier New' },
 };
