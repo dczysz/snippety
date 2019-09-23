@@ -55,7 +55,7 @@ const StyledSidebar = styled.aside`
       border-radius: ${p => p.theme.br};
       color: inherit;
       font-size: inherit;
-      padding: 0.25rem;
+      padding: 0.125rem 0;
       text-align: center;
       width: 10rem;
 
