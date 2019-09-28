@@ -1,21 +1,15 @@
 import React, { useContext, useState, useEffect } from 'react';
 
 import { AppContext } from '../store/context';
-import {
-  actionTypes,
-  languageTypes,
-  pluginTypes,
-  titleBarTypes,
-  fontTypes,
-} from '../store/types';
+import * as types from '../store/types';
 import saveImg from '../util/saveImg';
 import { checkRatio } from '../util/ratio';
 import Slider from './Slider';
 import Tooltip from './Tooltip';
-import * as icons from '../assets/icons';
-import StyledSidebar from './styles/Sidebar';
 import Footer from './Footer';
 import Select from './Select';
+import StyledSidebar from './styles/Sidebar';
+import * as icons from '../assets/icons';
 
 const Sidebar = () => {
   const [state, dispatch] = useContext(AppContext);
@@ -52,31 +46,31 @@ const Sidebar = () => {
       {/* ---------- Dropdowns ---------- */}
       <Select
         label="Language"
-        options={languageTypes}
+        options={types.languageTypes}
         defaultValue={state.language}
         dispatch={dispatch}
-        actionType={actionTypes.LANGUAGE}
+        actionType={types.actionTypes.LANGUAGE}
       />
       <Select
         label="Extras"
-        options={pluginTypes}
+        options={types.pluginTypes}
         defaultValue={state.plugin}
         dispatch={dispatch}
-        actionType={actionTypes.PLUGIN}
+        actionType={types.actionTypes.PLUGIN}
       />
       <Select
         label="Title Bar"
-        options={titleBarTypes}
+        options={types.titleBarTypes}
         defaultValue={state.titleBar}
         dispatch={dispatch}
-        actionType={actionTypes.TITLE_BAR}
+        actionType={types.actionTypes.TITLE_BAR}
       />
       <Select
         label="Font"
-        options={fontTypes}
+        options={types.fontTypes}
         defaultValue={state.font}
         dispatch={dispatch}
-        actionType={actionTypes.FONT}
+        actionType={types.actionTypes.FONT}
       />
 
       {/* ---------- Sliders ---------- */}
@@ -88,7 +82,7 @@ const Sidebar = () => {
         max={360}
         value={state.angle}
         onChange={e =>
-          dispatch({ type: actionTypes.ANGLE, payload: e.target.value })
+          dispatch({ type: types.actionTypes.ANGLE, payload: e.target.value })
         }
       />
       <Slider
@@ -99,7 +93,7 @@ const Sidebar = () => {
         max={360}
         value={state.hue}
         onChange={e =>
-          dispatch({ type: actionTypes.HUE, payload: e.target.value })
+          dispatch({ type: types.actionTypes.HUE, payload: e.target.value })
         }
       />
       <Slider
@@ -110,7 +104,10 @@ const Sidebar = () => {
         max={100}
         value={state.saturation}
         onChange={e =>
-          dispatch({ type: actionTypes.SATURATION, payload: e.target.value })
+          dispatch({
+            type: types.actionTypes.SATURATION,
+            payload: e.target.value,
+          })
         }
       />
       <Slider
@@ -121,7 +118,10 @@ const Sidebar = () => {
         max={100}
         value={state.lightness}
         onChange={e =>
-          dispatch({ type: actionTypes.LIGHTNESS, payload: e.target.value })
+          dispatch({
+            type: types.actionTypes.LIGHTNESS,
+            payload: e.target.value,
+          })
         }
       />
       <Slider
@@ -132,7 +132,10 @@ const Sidebar = () => {
         max={200}
         value={state.paddingX}
         onChange={e =>
-          dispatch({ type: actionTypes.PADDING_X, payload: e.target.value })
+          dispatch({
+            type: types.actionTypes.PADDING_X,
+            payload: e.target.value,
+          })
         }
       />
       <Slider
@@ -143,7 +146,10 @@ const Sidebar = () => {
         max={200}
         value={state.paddingY}
         onChange={e =>
-          dispatch({ type: actionTypes.PADDING_Y, payload: e.target.value })
+          dispatch({
+            type: types.actionTypes.PADDING_Y,
+            payload: e.target.value,
+          })
         }
       />
 
