@@ -44,27 +44,6 @@ const StyledSidebar = styled.aside`
     font-size: 0.8rem;
   }
 
-  label.select {
-    align-items: baseline;
-    display: flex;
-    justify-content: space-between;
-
-    select {
-      background: hsl(${p => p.theme.lightGray});
-      border: none;
-      border-radius: ${p => p.theme.br};
-      color: inherit;
-      font-size: inherit;
-      padding: 0.125rem 0;
-      text-align: center;
-      width: 10rem;
-
-      :focus {
-        outline-color: hsl(${p => p.theme.white});
-      }
-    }
-  }
-
   label.standalone {
     display: flex;
     justify-content: space-between;

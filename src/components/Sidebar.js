@@ -15,6 +15,7 @@ import Tooltip from './Tooltip';
 import * as icons from '../assets/icons';
 import StyledSidebar from './styles/Sidebar';
 import Footer from './Footer';
+import Select from './Select';
 
 const Sidebar = () => {
   const [state, dispatch] = useContext(AppContext);
@@ -49,70 +50,34 @@ const Sidebar = () => {
       <h2>Settings</h2>
 
       {/* ---------- Dropdowns ---------- */}
-      <label className="select">
-        <span>Language</span>
-        <select
-          defaultValue={state.language}
-          onChange={e =>
-            dispatch({ type: actionTypes.LANGUAGE, payload: e.target.value })
-          }
-        >
-          {Object.keys(languageTypes).map(key => (
-            <option key={key} value={languageTypes[key].code}>
-              {languageTypes[key].name}
-            </option>
-          ))}
-        </select>
-      </label>
-      <label className="select">
-        <span>Extras</span>
-        <select
-          defaultValue={state.plugin}
-          onChange={e =>
-            dispatch({ type: actionTypes.PLUGIN, payload: e.target.value })
-          }
-        >
-          <option value=""></option>
-          {Object.keys(pluginTypes).map(key => (
-            <option key={key} value={pluginTypes[key].code}>
-              {pluginTypes[key].name}
-            </option>
-          ))}
-          }
-        </select>
-      </label>
-      <label className="select">
-        <span>Title Bar</span>
-        <select
-          defaultValue={state.titleBar}
-          onChange={e =>
-            dispatch({ type: actionTypes.TITLE_BAR, payload: e.target.value })
-          }
-        >
-          <option value=""></option>
-          {Object.keys(titleBarTypes).map(type => (
-            <option key={type} value={type}>
-              {type}
-            </option>
-          ))}
-          }
-        </select>
-      </label>
-      <label className="select">
-        <span>Font</span>
-        <select
-          defaultValue={state.font}
-          onChange={e =>
-            dispatch({ type: actionTypes.FONT, payload: e.target.value })
-          }
-        >
-          {Object.keys(fontTypes).map(key => (
-            <option key={key} value={fontTypes[key].code}>
-              {fontTypes[key].name}
-            </option>
-          ))}
-        </select>
-      </label>
+      <Select
+        label="Language"
+        options={languageTypes}
+        defaultValue={state.language}
+        dispatch={dispatch}
+        actionType={actionTypes.LANGUAGE}
+      />
+      <Select
+        label="Extras"
+        options={pluginTypes}
+        defaultValue={state.plugin}
+        dispatch={dispatch}
+        actionType={actionTypes.PLUGIN}
+      />
+      <Select
+        label="Title Bar"
+        options={titleBarTypes}
+        defaultValue={state.titleBar}
+        dispatch={dispatch}
+        actionType={actionTypes.TITLE_BAR}
+      />
+      <Select
+        label="Font"
+        options={fontTypes}
+        defaultValue={state.font}
+        dispatch={dispatch}
+        actionType={actionTypes.FONT}
+      />
 
       {/* ---------- Sliders ---------- */}
       <Slider
