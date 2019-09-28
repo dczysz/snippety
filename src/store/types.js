@@ -22,11 +22,13 @@ export const actionTypes = {
 };
 
 export const pluginTypes = {
+  NONE: { name: '', code: '' },
   LINE_NUMBERS: { name: 'Line Numbers', code: 'line-numbers' },
 };
 
 export const titleBarTypes = {
-  OSX: 'OSX',
+  NONE: { name: '', code: '' },
+  OSX: { name: 'OSX', code: 'OSX' },
 };
 
 export const fontTypes = {

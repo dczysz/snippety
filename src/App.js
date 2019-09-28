@@ -28,7 +28,7 @@ const initialState = {
   height: null,
   language: languageTypes.JS.code,
   plugin: pluginTypes.LINE_NUMBERS.code,
-  titleBar: titleBarTypes.OSX,
+  titleBar: titleBarTypes.OSX.code,
   font: fontTypes.DEFAULT.code,
 };
 
