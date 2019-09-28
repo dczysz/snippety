@@ -81,9 +81,8 @@ const Sidebar = () => {
         min={0}
         max={360}
         value={state.angle}
-        onChange={e =>
-          dispatch({ type: types.actionTypes.ANGLE, payload: e.target.value })
-        }
+        dispatch={dispatch}
+        actionType={types.actionTypes.ANGLE}
       />
       <Slider
         title="Hue"
@@ -92,9 +91,8 @@ const Sidebar = () => {
         min={-1}
         max={360}
         value={state.hue}
-        onChange={e =>
-          dispatch({ type: types.actionTypes.HUE, payload: e.target.value })
-        }
+        dispatch={dispatch}
+        actionType={types.actionTypes.HUE}
       />
       <Slider
         title="Saturation"
@@ -103,12 +101,8 @@ const Sidebar = () => {
         min={0}
         max={100}
         value={state.saturation}
-        onChange={e =>
-          dispatch({
-            type: types.actionTypes.SATURATION,
-            payload: e.target.value,
-          })
-        }
+        dispatch={dispatch}
+        actionType={types.actionTypes.SATURATION}
       />
       <Slider
         title="Lightness"
@@ -117,12 +111,8 @@ const Sidebar = () => {
         min={0}
         max={100}
         value={state.lightness}
-        onChange={e =>
-          dispatch({
-            type: types.actionTypes.LIGHTNESS,
-            payload: e.target.value,
-          })
-        }
+        dispatch={dispatch}
+        actionType={types.actionTypes.LIGHTNESS}
       />
       <Slider
         title="X Padding"
@@ -131,12 +121,8 @@ const Sidebar = () => {
         min={0}
         max={200}
         value={state.paddingX}
-        onChange={e =>
-          dispatch({
-            type: types.actionTypes.PADDING_X,
-            payload: e.target.value,
-          })
-        }
+        dispatch={dispatch}
+        actionType={types.actionTypes.PADDING_X}
       />
       <Slider
         title="Y Padding"
@@ -145,12 +131,8 @@ const Sidebar = () => {
         min={0}
         max={200}
         value={state.paddingY}
-        onChange={e =>
-          dispatch({
-            type: types.actionTypes.PADDING_Y,
-            payload: e.target.value,
-          })
-        }
+        dispatch={dispatch}
+        actionType={types.actionTypes.PADDING_Y}
       />
 
       <hr />
