@@ -2,13 +2,14 @@ import React, { useContext, useRef, useEffect } from 'react';
 
 import { AppContext } from '../store/context';
 import { actionTypes } from '../store/types';
+import { State } from '../App';
 import TitleBar from './TitleBar';
 import CodePreview from './CodePreview';
 import StyledPreview, { StyledBackgroundContainer } from './styles/Preview';
 
 const Preview = () => {
-  const [state, dispatch] = useContext(AppContext);
-  const ref = useRef();
+  const [state, dispatch]: Array<State | any> = useContext(AppContext);
+  const ref = useRef<HTMLDivElement>(null!);
 
   useEffect(() => {
     const { offsetWidth, offsetHeight } = ref.current;
@@ -21,12 +22,12 @@ const Preview = () => {
       <StyledBackgroundContainer
         className="content"
         ref={ref}
-        angle={state.angle}
-        hue={state.hue}
-        saturation={state.saturation}
-        lightness={state.lightness}
-        paddingY={state.paddingY}
-        paddingX={state.paddingX}
+        // angle={state.angle}
+        // hue={state.hue}
+        // saturation={state.saturation}
+        // lightness={state.lightness}
+        // paddingY={state.paddingY}
+        // paddingX={state.paddingX}
       >
         <div className="content-container">
           <TitleBar type={state.titleBar} />

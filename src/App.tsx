@@ -16,7 +16,23 @@ import GlobalStyle from './components/styles/GlobalStyle';
 import StyledApp from './components/styles/App';
 import theme from './components/styles/theme';
 
-const initialState = {
+export type State = {
+  input: string;
+  angle: number;
+  hue: number;
+  saturation: number;
+  lightness: number;
+  paddingY: number;
+  paddingX: number;
+  width: number | null;
+  height: number | null;
+  language: string;
+  plugin: string;
+  titleBar: string;
+  font: string;
+};
+
+const initialState: State = {
   input: '',
   angle: 10,
   hue: 250,
@@ -32,7 +48,7 @@ const initialState = {
   font: fontTypes.DEFAULT.code,
 };
 
-const App = () => {
+const App: React.FC = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (

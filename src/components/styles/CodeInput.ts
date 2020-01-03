@@ -39,7 +39,7 @@ const StyledCodeInput = styled.div`
     color: hsl(${p => p.theme.white});
     margin: 8px;
     pointer-events: none;
-    opacity: ${p => (p.showHint ? 0.5 : 0)};
+    opacity: ${(p: { showHint: boolean }) => (p.showHint ? 0.5 : 0)};
     font-size: 1.2rem;
     transition: opacity 0.1s;
   }

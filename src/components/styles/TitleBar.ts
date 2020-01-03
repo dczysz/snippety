@@ -1,11 +1,19 @@
 import styled from 'styled-components';
 
+interface Props {
+  theme: {
+    titleBarHeight: number;
+  };
+  title?: string;
+  type?: string;
+}
+
 const TitleBar = styled.div`
   align-items: center;
   background: hsla(${p => p.theme.white}, 0.85);
   color: hsl(${p => p.theme.gray});
   display: flex;
-  height: ${p => (p.type === '' ? 0 : p.theme.titleBarHeight)};
+  height: ${(p: Props) => (p.type === '' ? 0 : p.theme.titleBarHeight)};
   padding-left: 0.25rem;
   transition: height 0.2s;
 

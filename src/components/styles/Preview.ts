@@ -1,5 +1,20 @@
 import styled from 'styled-components';
 
+interface PreviewProps {
+  theme: {
+    br: string;
+  };
+}
+
+interface BgProps {
+  paddingY: number;
+  paddingX: number;
+  hue: number;
+  angle: number;
+  saturation: number;
+  lightness: number;
+}
+
 const StyledPreview = styled.section`
   display: flex;
   justify-content: center;
@@ -9,13 +24,13 @@ const StyledPreview = styled.section`
   .content-container {
     min-width: 50%;
     max-height: 80%;
-    border-radius: ${p => p.theme.br};
+    border-radius: ${(p: PreviewProps) => p.theme.br};
     overflow: hidden;
     /* box-shadow: ${p => p.theme.bs}; //! Doesn't work with html2canvas */
   }
 `;
 
-const StyledBackgroundContainer = styled.div.attrs(p => ({
+const StyledBackgroundContainer = styled.div.attrs((p: BgProps) => ({
   style: {
     padding: `${p.paddingY}px ${p.paddingX}px`,
     backgroundImage:
@@ -25,7 +40,7 @@ const StyledBackgroundContainer = styled.div.attrs(p => ({
       ${p.angle}deg,
       hsl(${p.hue}, ${p.saturation}%, ${p.lightness}%),
       hsl(
-        ${parseInt(p.hue) + 45},
+        ${p.hue + 45},
         ${p.saturation + '%'},
         ${p.lightness + '%'}
       )

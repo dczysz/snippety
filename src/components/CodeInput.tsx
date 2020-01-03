@@ -5,17 +5,18 @@ import { actionTypes } from '../store/types';
 import TitleBar from './TitleBar';
 import StyledCodeInput from './styles/CodeInput';
 
-const CodeInput = () => {
+const CodeInput: React.FC = () => {
   const [state, dispatch] = useContext(AppContext);
 
-  const filterInput = e => {
+  const filterInput = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     // Handle tabs
     if (e.keyCode === 9) {
       e.preventDefault();
 
-      const currentInput = e.target.value;
-      const cursorStart = e.target.selectionStart;
-      const cursorEnd = e.target.selectionEnd;
+      const target = e.target as HTMLTextAreaElement;
+      const currentInput = target.value;
+      const cursorStart = target.selectionStart;
+      const cursorEnd = target.selectionEnd;
       const newOutput =
         currentInput.substring(0, cursorStart) +
         '  ' +
@@ -30,7 +31,7 @@ const CodeInput = () => {
 
   return (
     <StyledCodeInput showHint={state.input === ''}>
-      <TitleBar title="Input" />
+      <TitleBar title="Input" type="OSX" />
       <textarea
         value={state.input}
         onChange={e => {
