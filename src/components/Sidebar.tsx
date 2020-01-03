@@ -25,7 +25,7 @@ const Sidebar = () => {
     target: {
       dataset: { format },
     },
-  }) => {
+  }: any) => {
     console.log('Saving...');
     setLoading(true);
     setError(false);

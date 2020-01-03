@@ -1,5 +1,9 @@
 import styled, { keyframes } from 'styled-components';
 
+interface Props {
+  errorLife: number;
+}
+
 const errorFade = keyframes`
   0% {
     opacity: 1;
@@ -14,7 +18,7 @@ const errorFade = keyframes`
   }
 `;
 
-const StyledSidebar = styled.aside`
+const StyledSidebar = styled.aside<Props>`
   --color: hsl(${p => p.theme.lightestGray});
   align-items: stretch;
   background-color: hsl(${p => p.theme.gray});
