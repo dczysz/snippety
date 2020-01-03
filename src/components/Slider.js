@@ -2,19 +2,26 @@ import React from 'react';
 
 import StyledSlider from './styles/Slider';
 
-const Slider = props => (
-  <StyledSlider title={props.title}>
-    <props.icon />
+const Slider = ({
+  title,
+  icon: Icon,
+  min,
+  max,
+  value,
+  dispatch,
+  actionType,
+  unit,
+}) => (
+  <StyledSlider title={title}>
+    <Icon />
     <input
       type="range"
-      min={props.min}
-      max={props.max}
-      value={props.value}
-      onChange={e =>
-        props.dispatch({ type: props.actionType, payload: e.target.value })
-      }
+      min={min}
+      max={max}
+      value={value}
+      onChange={e => dispatch({ type: actionType, payload: +e.target.value })}
     />
-    <span>{props.value + props.unit}</span>
+    <span>{value + unit}</span>
   </StyledSlider>
 );
 
