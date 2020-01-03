@@ -6,8 +6,15 @@ import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
 
 import StyledCodePreview from './styles/CodePreview';
 
-const Code = ({ code, plugin, language, font }) => {
-  const ref = useRef();
+interface Props {
+  code: string;
+  plugin: string;
+  language: string;
+  font: string;
+}
+
+const Code: React.FC<Props> = ({ code, plugin, language, font }) => {
+  const ref = useRef<HTMLPreElement>(null!);
 
   useEffect(() => {
     ref && ref.current && Prism.highlightElement(ref.current);

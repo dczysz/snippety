@@ -1,14 +1,18 @@
 import styled from 'styled-components';
 import { fontTypes } from '../../store/types';
 
+interface Props {
+  font: string;
+}
+
 // ID of `pre` is used to be more specific than prism styles
 // Attributes much be changed above in attrs() or prism styles are removed
-const StyledCodePreview = styled.pre.attrs(p => ({
+const StyledCodePreview = styled.pre.attrs((p: Props) => ({
   style: {
     fontSize: p.font === fontTypes.DEJAVU_SANS_MONO.code ? '0.9em' : 'inherit',
     fontFamily: p.font || 'inherit',
   },
-}))`
+}))<Props>`
   &#pre {
     margin: 0;
     border-radius: 0 0 ${p => p.theme.br} ${p => p.theme.br};
