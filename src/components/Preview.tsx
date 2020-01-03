@@ -22,12 +22,12 @@ const Preview = () => {
       <StyledBackgroundContainer
         className="content"
         ref={ref}
-        // angle={state.angle}
-        // hue={state.hue}
-        // saturation={state.saturation}
-        // lightness={state.lightness}
-        // paddingY={state.paddingY}
-        // paddingX={state.paddingX}
+        angle={state.angle}
+        hue={state.hue}
+        saturation={state.saturation}
+        lightness={state.lightness}
+        paddingY={state.paddingY}
+        paddingX={state.paddingX}
       >
         <div className="content-container">
           <TitleBar type={state.titleBar} />

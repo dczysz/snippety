@@ -1,11 +1,5 @@
 import styled from 'styled-components';
 
-interface PreviewProps {
-  theme: {
-    br: string;
-  };
-}
-
 interface BgProps {
   paddingY: number;
   paddingX: number;
@@ -24,7 +18,7 @@ const StyledPreview = styled.section`
   .content-container {
     min-width: 50%;
     max-height: 80%;
-    border-radius: ${(p: PreviewProps) => p.theme.br};
+    border-radius: ${p => p.theme.br};
     overflow: hidden;
     /* box-shadow: ${p => p.theme.bs}; //! Doesn't work with html2canvas */
   }
@@ -46,7 +40,7 @@ const StyledBackgroundContainer = styled.div.attrs((p: BgProps) => ({
       )
     )`,
   },
-}))`
+}))<BgProps>`
   display: flex;
   justify-content: center;
   align-items: center;
