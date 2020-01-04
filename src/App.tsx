@@ -49,7 +49,9 @@ const initialState: State = {
 };
 
 const App: React.FC = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch]: Array<
+    State | React.Dispatch<{ type: string; payload: string }>
+  > = useReducer(reducer, initialState);
 
   return (
     <AppContext.Provider value={[state, dispatch]}>
