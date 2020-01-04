@@ -2,7 +2,8 @@ import React from 'react';
 
 interface Props {
   href: string;
-  children: any;
+  title?: string;
+  children: string;
 }
 
 const LinkBlank: React.FC<Props> = ({ href, children }) => (

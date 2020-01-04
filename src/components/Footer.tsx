@@ -27,12 +27,13 @@ const Footer = () => (
         Freepik
       </LinkBlank>{' '}
       from{' '}
-      <LinkBlank href="https://www.flaticon.com/" title="Flaticon">
+      <LinkBlank href="https://www.flaticon.com" title="Flaticon">
         www.flaticon.com
       </LinkBlank>
     </p>
     <p>
-      Saturation icon by <LinkBlank>FontAwesome</LinkBlank> under{' '}
+      Saturation icon by{' '}
+      <LinkBlank href="https://fontawesome.com">FontAwesome</LinkBlank> under{' '}
       <LinkBlank href="https://creativecommons.org/licenses/by/4.0/">
         CC BY 4.0
       </LinkBlank>{' '}
