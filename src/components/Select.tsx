@@ -2,7 +2,26 @@ import React from 'react';
 
 import StyledSelect from './styles/Select';
 
-const Select = ({ label, options, defaultValue, dispatch, actionType }) => {
+interface Props {
+  actionType: string;
+  defaultValue: string;
+  dispatch: React.Dispatch<{ type: string; payload: string }>;
+  label: string;
+  options: {
+    [key: string]: {
+      name: string;
+      code: string;
+    };
+  };
+}
+
+const Select: React.FC<Props> = ({
+  actionType,
+  defaultValue,
+  dispatch,
+  label,
+  options,
+}) => {
   return (
     <StyledSelect className="select">
       <span>{label}</span>

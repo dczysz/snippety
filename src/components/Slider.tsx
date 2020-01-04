@@ -2,7 +2,18 @@ import React from 'react';
 
 import StyledSlider from './styles/Slider';
 
-const Slider = ({
+interface Props {
+  title: string;
+  icon: React.FC;
+  min: number;
+  max: number;
+  value: number;
+  dispatch: React.Dispatch<{ type: string; payload: number }>;
+  actionType: string;
+  unit: string;
+}
+
+const Slider: React.FC<Props> = ({
   title,
   icon: Icon,
   min,
