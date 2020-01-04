@@ -3,7 +3,7 @@ import React from 'react';
 import { ratios } from '../util/ratio';
 import StyledTooltip from './styles/Tooltip';
 
-const Tooltip = () => (
+const Tooltip: React.FC = () => (
   <StyledTooltip>
     <div className="heading">Aspect Ratios</div>
     {ratios.map(ratio => (
