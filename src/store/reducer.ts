@@ -1,6 +1,12 @@
 import { actionTypes } from './types';
+import { State } from '../App';
 
-export const reducer = (state, action) => {
+export type ActionType = {
+  type: string;
+  payload: any;
+};
+
+export const reducer = (state: State, action: ActionType) => {
   switch (action.type) {
     case actionTypes.INPUT:
       return {

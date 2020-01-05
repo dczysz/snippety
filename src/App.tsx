@@ -32,7 +32,7 @@ export type State = {
   font: string;
 };
 
-const initialState: State = {
+export const initialState: State = {
   input: '',
   angle: 10,
   hue: 250,
@@ -49,9 +49,7 @@ const initialState: State = {
 };
 
 const App: React.FC = () => {
-  const [state, dispatch]: Array<
-    State | React.Dispatch<{ type: string; payload: string }>
-  > = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
     <AppContext.Provider value={[state, dispatch]}>
