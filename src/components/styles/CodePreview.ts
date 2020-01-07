@@ -6,7 +6,8 @@ interface Props {
 }
 
 // ID of `pre` is used to be more specific than prism styles
-// Attributes much be changed above in attrs() or prism styles are removed
+// Dynamic attributes must be changed in attrs()
+// or prism styles are removed
 const StyledCodePreview = styled.pre.attrs((p: Props) => ({
   style: {
     fontSize: p.font === fontTypes.DEJAVU_SANS_MONO.code ? '0.9em' : 'inherit',

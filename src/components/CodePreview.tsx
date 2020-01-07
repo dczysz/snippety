@@ -23,7 +23,7 @@ const Code: React.FC<Props> = ({ code, language, plugin, font }) => {
   return (
     <StyledCodePreview id="pre" className={plugin || ''} font={font}>
       <code ref={ref} className={`language-${language}`}>
-        {code}
+        {code.trim()}
       </code>
     </StyledCodePreview>
   );
