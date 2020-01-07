@@ -1,9 +1,6 @@
 import styled from 'styled-components';
 
 interface Props {
-  theme: {
-    titleBarHeight: number;
-  };
   title?: string;
   type?: string;
   transitionTime?: number;

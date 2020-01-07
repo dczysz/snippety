@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-const StyledCodeInput = styled.div`
+interface Props {
+  showHint: boolean;
+}
+
+const StyledCodeInput = styled.div<Props>`
   margin: 4rem 0 2rem 0;
   box-shadow: ${p => p.theme.bs};
   border-radius: ${p => p.theme.br};
@@ -39,7 +43,7 @@ const StyledCodeInput = styled.div`
     color: hsl(${p => p.theme.white});
     margin: 8px;
     pointer-events: none;
-    opacity: ${(p: { showHint: boolean }) => (p.showHint ? 0.5 : 0)};
+    opacity: ${p => (p.showHint ? 0.5 : 0)};
     font-size: 1.2rem;
     transition: opacity 0.1s;
   }
