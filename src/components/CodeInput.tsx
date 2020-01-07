@@ -25,8 +25,11 @@ const CodeInput: React.FC<Props> = ({ input, setInput }) => {
 
       setInput(newInput);
 
-      //TODO: Fix tab moving cursor to end of textarea
-      // e.target.cursorStart = cursorStart; //!Doesnt work
+      // Fix setInput() moving cursor to end of textarea
+      setTimeout(
+        () => target.setSelectionRange(cursorStart + 2, cursorEnd + 2),
+        0
+      );
     }
   };
 
