@@ -12,8 +12,8 @@ import { reducer } from './store/reducer';
 import Preview from './components/Preview';
 import Sidebar from './components/Sidebar';
 import CodeInput from './components/CodeInput';
-import GlobalStyle from './components/styles/GlobalStyle';
 import StyledApp from './components/styles/App';
+import GlobalStyle from './components/styles/GlobalStyle';
 import theme from './components/styles/theme';
 
 export type State = {
@@ -32,7 +32,7 @@ export type State = {
   font: string;
 };
 
-export const initialState: State = {
+const initialState: State = {
   input: '',
   angle: 10,
   hue: 250,
@@ -50,19 +50,7 @@ export const initialState: State = {
 
 const App: React.FC = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const {
-    angle,
-    hue,
-    saturation,
-    lightness,
-    paddingY,
-    paddingX,
-    titleBar,
-    input,
-    plugin,
-    language,
-    font,
-  }: State = state;
+  const { input }: State = state; // Otherwise input is type any?
 
   return (
     <ThemeProvider theme={theme}>
@@ -76,17 +64,7 @@ const App: React.FC = () => {
             }
           />
           <Preview
-            angle={angle}
-            hue={hue}
-            saturation={saturation}
-            lightness={lightness}
-            paddingY={paddingY}
-            paddingX={paddingX}
-            titleBar={titleBar}
-            input={input}
-            plugin={plugin}
-            language={language}
-            font={font}
+            {...state}
             setWidth={(newWidth: number) =>
               dispatch({ type: actionTypes.WIDTH, payload: newWidth })
             }
