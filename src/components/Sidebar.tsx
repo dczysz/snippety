@@ -1,7 +1,5 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { AppContext } from '../store/context';
-import * as types from '../store/types';
 import saveImg from '../util/saveImg';
 import { checkRatio } from '../util/ratio';
 import Slider from './Slider';
@@ -10,9 +8,29 @@ import Footer from './Footer';
 import Select from './Select';
 import StyledSidebar from './styles/Sidebar';
 import * as icons from '../assets/icons';
+import { State } from '../App';
+import * as types from '../store/types';
+import { ActionType } from '../store/reducer';
 
-const Sidebar = () => {
-  const [state, dispatch] = useContext(AppContext);
+interface Props extends State {
+  dispatch: React.Dispatch<ActionType>;
+}
+
+const Sidebar: React.FC<Props> = ({
+  angle,
+  hue,
+  saturation,
+  lightness,
+  paddingY,
+  paddingX,
+  titleBar,
+  plugin,
+  language,
+  font,
+  dispatch,
+  width,
+  height,
+}) => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const errorLife = 4000;
@@ -31,7 +49,7 @@ const Sidebar = () => {
     setError(false);
 
     try {
-      saveImg(document.querySelector('.content'), format, state.hue < 0, () =>
+      saveImg(document.querySelector('.content'), format, hue < 0, () =>
         setLoading(false)
       );
     } catch (err) {
@@ -39,111 +57,134 @@ const Sidebar = () => {
     }
   };
 
+  const selects = [
+    {
+      label: 'Language',
+      options: types.languageTypes,
+      defaultValue: language,
+      actionType: types.actionTypes.LANGUAGE,
+    },
+    {
+      label: 'Extras',
+      options: types.pluginTypes,
+      defaultValue: plugin,
+      actionType: types.actionTypes.PLUGIN,
+    },
+    {
+      label: 'Title Bar',
+      options: types.titleBarTypes,
+      defaultValue: titleBar,
+      actionType: types.actionTypes.TITLE_BAR,
+    },
+    {
+      label: 'Font',
+      options: types.fontTypes,
+      defaultValue: font,
+      actionType: types.actionTypes.FONT,
+    },
+  ];
+
+  const sliders = [
+    {
+      title: 'Angle',
+      icon: icons.angle,
+      unit: '°',
+      min: 0,
+      max: 360,
+      value: angle,
+      actionType: types.actionTypes.ANGLE,
+    },
+    {
+      title: 'Hue',
+      icon: icons.hue,
+      unit: '°',
+      min: -1,
+      max: 360,
+      value: hue,
+      actionType: types.actionTypes.HUE,
+    },
+    {
+      title: 'Saturation',
+      icon: icons.saturation,
+      unit: '%',
+      min: 0,
+      max: 100,
+      value: saturation,
+      actionType: types.actionTypes.SATURATION,
+    },
+    {
+      title: 'Lightness',
+      icon: icons.lightness,
+      unit: '%',
+      min: 0,
+      max: 100,
+      value: lightness,
+      actionType: types.actionTypes.LIGHTNESS,
+    },
+    {
+      title: 'X Padding',
+      icon: icons.x,
+      unit: 'px',
+      min: 0,
+      max: 200,
+      value: paddingX,
+      actionType: types.actionTypes.PADDING_X,
+    },
+    {
+      title: 'Y Padding',
+      icon: icons.y,
+      unit: 'px',
+      min: 0,
+      max: 200,
+      value: paddingY,
+      actionType: types.actionTypes.PADDING_Y,
+    },
+  ];
+
   return (
     <StyledSidebar errorLife={errorLife}>
       <h2>Settings</h2>
 
-      {/* ---------- Dropdowns ---------- */}
-      <Select
-        label="Language"
-        options={types.languageTypes}
-        defaultValue={state.language}
-        dispatch={dispatch}
-        actionType={types.actionTypes.LANGUAGE}
-      />
-      <Select
-        label="Extras"
-        options={types.pluginTypes}
-        defaultValue={state.plugin}
-        dispatch={dispatch}
-        actionType={types.actionTypes.PLUGIN}
-      />
-      <Select
-        label="Title Bar"
-        options={types.titleBarTypes}
-        defaultValue={state.titleBar}
-        dispatch={dispatch}
-        actionType={types.actionTypes.TITLE_BAR}
-      />
-      <Select
-        label="Font"
-        options={types.fontTypes}
-        defaultValue={state.font}
-        dispatch={dispatch}
-        actionType={types.actionTypes.FONT}
-      />
+      {/* --------- Dropdowns --------- */}
+      {selects.map(s => (
+        <Select
+          key={s.actionType}
+          label={s.label}
+          options={s.options}
+          defaultValue={s.defaultValue}
+          setValue={(newValue: string) =>
+            dispatch({
+              type: s.actionType,
+              payload: newValue,
+            })
+          }
+        />
+      ))}
 
       {/* ---------- Sliders ---------- */}
-      <Slider
-        title="Angle"
-        icon={icons.angle}
-        unit="&deg;"
-        min={0}
-        max={360}
-        value={state.angle}
-        dispatch={dispatch}
-        actionType={types.actionTypes.ANGLE}
-      />
-      <Slider
-        title="Hue"
-        icon={icons.hue}
-        unit="&deg;"
-        min={-1}
-        max={360}
-        value={state.hue}
-        dispatch={dispatch}
-        actionType={types.actionTypes.HUE}
-      />
-      <Slider
-        title="Saturation"
-        icon={icons.saturation}
-        unit="%"
-        min={0}
-        max={100}
-        value={state.saturation}
-        dispatch={dispatch}
-        actionType={types.actionTypes.SATURATION}
-      />
-      <Slider
-        title="Lightness"
-        icon={icons.lightness}
-        unit="%"
-        min={0}
-        max={100}
-        value={state.lightness}
-        dispatch={dispatch}
-        actionType={types.actionTypes.LIGHTNESS}
-      />
-      <Slider
-        title="X Padding"
-        icon={icons.x}
-        unit="px"
-        min={0}
-        max={200}
-        value={state.paddingX}
-        dispatch={dispatch}
-        actionType={types.actionTypes.PADDING_X}
-      />
-      <Slider
-        title="Y Padding"
-        icon={icons.y}
-        unit="px"
-        min={0}
-        max={200}
-        value={state.paddingY}
-        dispatch={dispatch}
-        actionType={types.actionTypes.PADDING_Y}
-      />
+      {sliders.map(s => (
+        <Slider
+          key={s.actionType}
+          title={s.title}
+          icon={s.icon}
+          unit={s.unit}
+          min={s.min}
+          max={s.max}
+          value={s.value}
+          setValue={(newValue: string) =>
+            dispatch({
+              type: s.actionType,
+              payload: +newValue,
+            })
+          }
+        />
+      ))}
 
       <hr />
 
       <label className="standalone">
         <span>Size (px):</span>
-        <span>
-          {state.width && state.height
-            ? `${state.width} x ${state.height}`
-            : '?'}
-        </span>
+        <span>{width && height ? `${width} x ${height}` : '?'}</span>
       </label>
       <label className="standalone">
         <span className="flex">
@@ -156,16 +197,12 @@ const Sidebar = () => {
           </button>
         </span>
         <span>
-          {state.height !== 0 && (
+          {width && height && height !== 0 && (
             <span className="ratio-match">
-              {checkRatio((state.width / state.height).toFixed(2))}
+              {checkRatio((width / height).toFixed(2))}
             </span>
           )}
-          <span>
-            {state.width && state.height
-              ? (state.width / state.height).toFixed(2)
-              : '?'}
-          </span>
+          <span>{width && height ? (width / height).toFixed(2) : '?'}</span>
         </span>
       </label>
 

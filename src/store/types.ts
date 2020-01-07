@@ -27,7 +27,7 @@ export const pluginTypes = {
 };
 
 export const titleBarTypes = {
-  NONE: { name: '', code: '' },
+  NONE: { name: 'None', code: '' },
   OSX: { name: 'OSX', code: 'OSX' },
 };
 

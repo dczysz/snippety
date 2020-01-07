@@ -5,7 +5,7 @@ export const ratios = [
   ['1.78', '16:9'],
 ];
 
-export const checkRatio = ratio => {
+export const checkRatio = (ratio: string) => {
   const match = ratios.filter(r => ratio === r[0]);
   return match.length ? match[0][1] : '';
 };

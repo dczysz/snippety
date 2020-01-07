@@ -6,9 +6,9 @@ import {
   pluginTypes,
   titleBarTypes,
   fontTypes,
+  actionTypes,
 } from './store/types';
 import { reducer } from './store/reducer';
-import { AppContext } from './store/context';
 import Preview from './components/Preview';
 import Sidebar from './components/Sidebar';
 import CodeInput from './components/CodeInput';
@@ -50,20 +50,54 @@ export const initialState: State = {
 
 const App: React.FC = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const {
+    angle,
+    hue,
+    saturation,
+    lightness,
+    paddingY,
+    paddingX,
+    titleBar,
+    input,
+    plugin,
+    language,
+    font,
+  }: State = state;
 
   return (
-    <AppContext.Provider value={[state, dispatch]}>
-      <ThemeProvider theme={theme}>
-        <StyledApp>
-          <GlobalStyle />
-          <main>
-            <CodeInput />
-            <Preview />
-          </main>
-          <Sidebar />
-        </StyledApp>
-      </ThemeProvider>
-    </AppContext.Provider>
+    <ThemeProvider theme={theme}>
+      <StyledApp>
+        <GlobalStyle />
+        <main>
+          <CodeInput
+            input={input}
+            setInput={(newInput: string) =>
+              dispatch({ type: actionTypes.INPUT, payload: newInput })
+            }
+          />
+          <Preview
+            angle={angle}
+            hue={hue}
+            saturation={saturation}
+            lightness={lightness}
+            paddingY={paddingY}
+            paddingX={paddingX}
+            titleBar={titleBar}
+            input={input}
+            plugin={plugin}
+            language={language}
+            font={font}
+            setWidth={(newWidth: number) =>
+              dispatch({ type: actionTypes.WIDTH, payload: newWidth })
+            }
+            setHeight={(newHeight: number) =>
+              dispatch({ type: actionTypes.HEIGHT, payload: newHeight })
+            }
+          />
+        </main>
+        <Sidebar {...state} dispatch={dispatch} />
+      </StyledApp>
+    </ThemeProvider>
   );
 };
 

@@ -5,23 +5,21 @@ import StyledSlider from './styles/Slider';
 interface Props {
   title: string;
   icon: React.FC;
+  unit: string;
   min: number;
   max: number;
   value: number;
-  dispatch: React.Dispatch<{ type: string; payload: number }>;
-  actionType: string;
-  unit: string;
+  setValue: (newValue: string) => void;
 }
 
 const Slider: React.FC<Props> = ({
   title,
   icon: Icon,
+  unit,
   min,
   max,
   value,
-  dispatch,
-  actionType,
-  unit,
+  setValue,
 }) => (
   <StyledSlider title={title}>
     <Icon />
@@ -30,7 +28,7 @@ const Slider: React.FC<Props> = ({
       min={min}
       max={max}
       value={value}
-      onChange={e => dispatch({ type: actionType, payload: +e.target.value })}
+      onChange={e => setValue(e.target.value)}
     />
     <span>{value + unit}</span>
   </StyledSlider>

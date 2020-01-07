@@ -5,10 +5,11 @@ import StyledTitleBar from './styles/TitleBar';
 interface Props {
   title?: string;
   type?: string;
+  transitionTime?: number;
 }
 
-const TitleBar: React.FC<Props> = ({ title, type }) => (
-  <StyledTitleBar title={title}>
+const TitleBar: React.FC<Props> = ({ title, type, transitionTime }) => (
+  <StyledTitleBar title={title} type={type} transitionTime={transitionTime}>
     {title ? <div>{title}</div> : <span />}
   </StyledTitleBar>
 );

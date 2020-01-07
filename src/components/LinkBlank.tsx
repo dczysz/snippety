@@ -6,8 +6,8 @@ interface Props {
   children: string;
 }
 
-const LinkBlank: React.FC<Props> = ({ href, children }) => (
-  <a href={href} target="_blank" rel="noopener noreferrer">
+const LinkBlank: React.FC<Props> = ({ href, title = '', children }) => (
+  <a href={href} title={title} target="_blank" rel="noopener noreferrer">
     {children}
   </a>
 );

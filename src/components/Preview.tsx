@@ -1,41 +1,80 @@
-import React, { useContext, useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 
-import { AppContext } from '../store/context';
-import { actionTypes } from '../store/types';
-import { State } from '../App';
 import TitleBar from './TitleBar';
 import CodePreview from './CodePreview';
 import StyledPreview, { StyledBackgroundContainer } from './styles/Preview';
 
-const Preview = () => {
-  const [state, dispatch]: Array<State | any> = useContext(AppContext);
+interface Props {
+  angle: number;
+  hue: number;
+  saturation: number;
+  lightness: number;
+  paddingY: number;
+  paddingX: number;
+  titleBar: string;
+  input: string;
+  plugin: string;
+  language: string;
+  font: string;
+  setWidth: any;
+  setHeight: any;
+}
+
+const Preview: React.FC<Props> = ({
+  angle,
+  hue,
+  saturation,
+  lightness,
+  paddingY,
+  paddingX,
+  titleBar,
+  input,
+  plugin,
+  language,
+  font,
+  setWidth,
+  setHeight,
+}) => {
+  const TITLE_TRANSITION_TIME = 200;
   const ref = useRef<HTMLDivElement>(null!);
 
-  useEffect(() => {
+  const updateWidthAndHeight = () => {
     const { offsetWidth, offsetHeight } = ref.current;
-    dispatch({ type: actionTypes.WIDTH, payload: offsetWidth });
-    dispatch({ type: actionTypes.HEIGHT, payload: offsetHeight });
-  }, [dispatch, state.input, state.paddingX, state.paddingY, state.plugin]);
+    setWidth(offsetWidth);
+    setHeight(offsetHeight);
+  };
+
+  useEffect(() => {
+    // Wait for CSS transition to finish
+    const timeout = setTimeout(
+      updateWidthAndHeight,
+      TITLE_TRANSITION_TIME + 20
+    );
+
+    return () => clearTimeout(timeout);
+  }, [titleBar]);
+
+  useEffect(updateWidthAndHeight, [input, paddingX, paddingY, plugin, font]);
 
   return (
     <StyledPreview>
       <StyledBackgroundContainer
         className="content"
         ref={ref}
-        angle={state.angle}
-        hue={state.hue}
-        saturation={state.saturation}
-        lightness={state.lightness}
-        paddingY={state.paddingY}
-        paddingX={state.paddingX}
+        angle={angle}
+        hue={hue}
+        saturation={saturation}
+        lightness={lightness}
+        paddingY={paddingY}
+        paddingX={paddingX}
       >
         <div className="content-container">
-          <TitleBar type={state.titleBar} />
+          <TitleBar type={titleBar} transitionTime={TITLE_TRANSITION_TIME} />
           <CodePreview
-            code={state.input}
-            plugin={state.plugin}
-            language={state.language}
-            font={state.font}
+            code={input}
+            language={language}
+            plugin={plugin}
+            font={font}
           />
         </div>
       </StyledBackgroundContainer>

@@ -6,16 +6,17 @@ interface Props {
   };
   title?: string;
   type?: string;
+  transitionTime?: number;
 }
 
-const TitleBar = styled.div`
+const TitleBar = styled.div<Props>`
   align-items: center;
   background: hsla(${p => p.theme.white}, 0.85);
   color: hsl(${p => p.theme.gray});
   display: flex;
-  height: ${(p: Props) => (p.type === '' ? 0 : p.theme.titleBarHeight)};
+  height: ${p => (p.type === '' ? 0 : p.theme.titleBarHeight)};
   padding-left: 0.25rem;
-  transition: height 0.2s;
+  transition: height ${p => p.transitionTime || 0}ms;
 
   div {
     font-size: 0.8rem;
@@ -33,7 +34,7 @@ const TitleBar = styled.div`
     height: 0.75rem;
     margin: 0 0.25rem;
     opacity: ${p => (p.type === '' ? 0 : 1)};
-    transition: opacity 0.2s;
+    transition: opacity ${p => p.transitionTime || 0}ms;
     width: 0.75rem;
   }
 

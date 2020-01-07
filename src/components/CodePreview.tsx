@@ -8,12 +8,12 @@ import StyledCodePreview from './styles/CodePreview';
 
 interface Props {
   code: string;
-  plugin: string;
   language: string;
+  plugin: string;
   font: string;
 }
 
-const Code: React.FC<Props> = ({ code, plugin, language, font }) => {
+const Code: React.FC<Props> = ({ code, language, plugin, font }) => {
   const ref = useRef<HTMLPreElement>(null!);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const Code: React.FC<Props> = ({ code, plugin, language, font }) => {
   return (
     <StyledCodePreview id="pre" className={plugin || ''} font={font}>
       <code ref={ref} className={`language-${language}`}>
-        {code.trim()}
+        {code}
       </code>
     </StyledCodePreview>
   );

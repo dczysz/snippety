@@ -1,19 +1,8 @@
-type Theme = {
-  sidebarWidth: number;
-  br: string;
-  white: string;
-  gray: string;
-  lightGray: string;
-  lighterGray: string;
-  lightestGray: string;
-  danger: string;
-  titleBarHeight: string;
-  bs: string;
-};
+import { DefaultTheme } from 'styled-components';
 
 const gray = '220, 13%, 18%';
 
-const theme: Theme = {
+const theme: DefaultTheme = {
   sidebarWidth: 300,
   br: '4px',
   white: '220, 10%, 85%',
