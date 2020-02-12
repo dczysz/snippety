@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 
+import * as types from '../store/types';
+import { StateType, ActionType } from '../store/reducer';
 import saveImg from '../util/saveImg';
 import { checkRatio } from '../util/ratio';
 import Slider from './Slider';
@@ -8,29 +11,13 @@ import Footer from './Footer';
 import Select from './Select';
 import StyledSidebar from './styles/Sidebar';
 import * as icons from '../assets/icons';
-import { State } from '../App';
-import * as types from '../store/types';
-import { ActionType } from '../store/reducer';
 
-interface Props extends State {
-  dispatch: React.Dispatch<ActionType>;
+interface Props extends StateType {
+  setSelectValue: (actionType: string, newValue: string) => void;
+  setSliderValue: (actionType: string, newValue: number) => void;
 }
 
-const Sidebar: React.FC<Props> = ({
-  angle,
-  hue,
-  saturation,
-  lightness,
-  paddingY,
-  paddingX,
-  titleBar,
-  plugin,
-  language,
-  font,
-  dispatch,
-  width,
-  height,
-}) => {
+const Sidebar: React.FC<Props> = props => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const errorLife = 4000;
@@ -49,7 +36,7 @@ const Sidebar: React.FC<Props> = ({
     setError(false);
 
     try {
-      saveImg(document.querySelector('.content'), format, hue < 0, () =>
+      saveImg(document.querySelector('.content'), format, props.hue < 0, () =>
         setLoading(false)
       );
     } catch (err) {
@@ -61,26 +48,30 @@ const Sidebar: React.FC<Props> = ({
     {
       label: 'Language',
       options: types.languageTypes,
-      defaultValue: language,
-      actionType: types.actionTypes.LANGUAGE,
+      defaultValue: props.language,
+      setValue: (newValue: string) =>
+        props.setSelectValue(types.actionTypes.LANGUAGE, newValue),
     },
     {
       label: 'Extras',
       options: types.pluginTypes,
-      defaultValue: plugin,
-      actionType: types.actionTypes.PLUGIN,
+      defaultValue: props.plugin,
+      setValue: (newValue: string) =>
+        props.setSelectValue(types.actionTypes.PLUGIN, newValue),
     },
     {
       label: 'Title Bar',
       options: types.titleBarTypes,
-      defaultValue: titleBar,
-      actionType: types.actionTypes.TITLE_BAR,
+      defaultValue: props.titleBar,
+      setValue: (newValue: string) =>
+        props.setSelectValue(types.actionTypes.TITLE_BAR, newValue),
     },
     {
       label: 'Font',
       options: types.fontTypes,
-      defaultValue: font,
-      actionType: types.actionTypes.FONT,
+      defaultValue: props.font,
+      setValue: (newValue: string) =>
+        props.setSelectValue(types.actionTypes.FONT, newValue),
     },
   ];
 
@@ -91,8 +82,9 @@ const Sidebar: React.FC<Props> = ({
       unit: '°',
       min: 0,
       max: 360,
-      value: angle,
-      actionType: types.actionTypes.ANGLE,
+      value: props.angle,
+      setValue: (newValue: string) =>
+        props.setSliderValue(types.actionTypes.ANGLE, +newValue),
     },
     {
       title: 'Hue',
@@ -100,8 +92,9 @@ const Sidebar: React.FC<Props> = ({
       unit: '°',
       min: -1,
       max: 360,
-      value: hue,
-      actionType: types.actionTypes.HUE,
+      value: props.hue,
+      setValue: (newValue: string) =>
+        props.setSliderValue(types.actionTypes.HUE, +newValue),
     },
     {
       title: 'Saturation',
@@ -109,8 +102,9 @@ const Sidebar: React.FC<Props> = ({
       unit: '%',
       min: 0,
       max: 100,
-      value: saturation,
-      actionType: types.actionTypes.SATURATION,
+      value: props.saturation,
+      setValue: (newValue: string) =>
+        props.setSliderValue(types.actionTypes.SATURATION, +newValue),
     },
     {
       title: 'Lightness',
@@ -118,8 +112,9 @@ const Sidebar: React.FC<Props> = ({
       unit: '%',
       min: 0,
       max: 100,
-      value: lightness,
-      actionType: types.actionTypes.LIGHTNESS,
+      value: props.lightness,
+      setValue: (newValue: string) =>
+        props.setSliderValue(types.actionTypes.LIGHTNESS, +newValue),
     },
     {
       title: 'X Padding',
@@ -127,8 +122,9 @@ const Sidebar: React.FC<Props> = ({
       unit: 'px',
       min: 0,
       max: 200,
-      value: paddingX,
-      actionType: types.actionTypes.PADDING_X,
+      value: props.paddingX,
+      setValue: (newValue: string) =>
+        props.setSliderValue(types.actionTypes.PADDING_X, +newValue),
     },
     {
       title: 'Y Padding',
@@ -136,8 +132,9 @@ const Sidebar: React.FC<Props> = ({
       unit: 'px',
       min: 0,
       max: 200,
-      value: paddingY,
-      actionType: types.actionTypes.PADDING_Y,
+      value: props.paddingY,
+      setValue: (newValue: string) =>
+        props.setSliderValue(types.actionTypes.PADDING_Y, +newValue),
     },
   ];
 
@@ -148,35 +145,25 @@ const Sidebar: React.FC<Props> = ({
       {/* --------- Dropdowns --------- */}
       {selects.map(s => (
         <Select
-          key={s.actionType}
+          key={s.label}
           label={s.label}
           options={s.options}
           defaultValue={s.defaultValue}
-          setValue={(newValue: string) =>
-            dispatch({
-              type: s.actionType,
-              payload: newValue,
-            })
-          }
+          setValue={s.setValue}
         />
       ))}
 
       {/* ---------- Sliders ---------- */}
       {sliders.map(s => (
         <Slider
-          key={s.actionType}
+          key={s.title}
           title={s.title}
           icon={s.icon}
           unit={s.unit}
           min={s.min}
           max={s.max}
           value={s.value}
-          setValue={(newValue: string) =>
-            dispatch({
-              type: s.actionType,
-              payload: +newValue,
-            })
-          }
+          setValue={s.setValue}
         />
       ))}
 
@@ -184,7 +171,11 @@ const Sidebar: React.FC<Props> = ({
 
       <label className="standalone">
         <span>Size (px):</span>
-        <span>{width && height ? `${width} x ${height}` : '?'}</span>
+        <span>
+          {props.width && props.height
+            ? `${props.width} x ${props.height}`
+            : '?'}
+        </span>
       </label>
       <label className="standalone">
         <span className="flex">
@@ -197,12 +188,16 @@ const Sidebar: React.FC<Props> = ({
           </button>
         </span>
         <span>
-          {width && height && height !== 0 && (
+          {props.width && props.height && props.height !== 0 && (
             <span className="ratio-match">
-              {checkRatio((width / height).toFixed(2))}
+              {checkRatio((props.width / props.height).toFixed(2))}
             </span>
           )}
-          <span>{width && height ? (width / height).toFixed(2) : '?'}</span>
+          <span>
+            {props.width && props.height
+              ? (props.width / props.height).toFixed(2)
+              : '?'}
+          </span>
         </span>
       </label>
 
@@ -223,4 +218,15 @@ const Sidebar: React.FC<Props> = ({
   );
 };
 
-export default Sidebar;
+const mapStateToProps = (state: StateType) => ({
+  ...state,
+});
+
+const mapDispatchToProps = (dispatch: React.Dispatch<ActionType>) => ({
+  setSelectValue: (actionType: string, newValue: string) =>
+    dispatch({ type: actionType, payload: newValue }),
+  setSliderValue: (actionType: string, newValue: number) =>
+    dispatch({ type: actionType, payload: newValue }),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);

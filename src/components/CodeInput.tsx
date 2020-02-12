@@ -1,5 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
+import { actionTypes } from '../store/types';
+import { ActionType, StateType } from '../store/reducer';
 import TitleBar from './TitleBar';
 import StyledCodeInput from './styles/CodeInput';
 
@@ -33,12 +36,18 @@ const CodeInput: React.FC<Props> = ({ input, setInput }) => {
     }
   };
 
+  const inputChangeHandler = ({
+    target: { value },
+  }: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setInput(value);
+  };
+
   return (
     <StyledCodeInput showHint={input === ''}>
       <TitleBar title="Input" type="OSX" />
       <textarea
         value={input}
-        onChange={e => setInput(e.target.value)}
+        onChange={inputChangeHandler}
         onKeyDown={filterInput}
         spellCheck={false}
         aria-label="Code Input"
@@ -47,4 +56,13 @@ const CodeInput: React.FC<Props> = ({ input, setInput }) => {
   );
 };
 
-export default CodeInput;
+const mapStateToProps = (state: StateType) => ({
+  input: state.input,
+});
+
+const mapDispatchToProps = (dispatch: React.Dispatch<ActionType>) => ({
+  setInput: (newInput: string) =>
+    dispatch({ type: actionTypes.INPUT, payload: newInput }),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CodeInput);

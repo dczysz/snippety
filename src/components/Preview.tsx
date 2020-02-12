@@ -1,23 +1,15 @@
 import React, { useRef, useEffect } from 'react';
+import { connect } from 'react-redux';
 
+import { actionTypes } from '../store/types';
+import { StateType, ActionType } from '../store/reducer';
 import TitleBar from './TitleBar';
 import CodePreview from './CodePreview';
 import StyledPreview, { StyledBackgroundContainer } from './styles/Preview';
 
-interface Props {
-  angle: number;
-  hue: number;
-  saturation: number;
-  lightness: number;
-  paddingY: number;
-  paddingX: number;
-  titleBar: string;
-  input: string;
-  plugin: string;
-  language: string;
-  font: string;
-  setWidth: any;
-  setHeight: any;
+interface Props extends StateType {
+  setWidth: (newWidth: number) => void;
+  setHeight: (newHeight: number) => void;
 }
 
 const Preview: React.FC<Props> = ({
@@ -82,4 +74,15 @@ const Preview: React.FC<Props> = ({
   );
 };
 
-export default Preview;
+const mapStateToProps = (state: StateType) => ({
+  ...state,
+});
+
+const mapDispatchToProps = (dispatch: React.Dispatch<ActionType>) => ({
+  setWidth: (newWidth: number) =>
+    dispatch({ type: actionTypes.WIDTH, payload: newWidth }),
+  setHeight: (newHeight: number) =>
+    dispatch({ type: actionTypes.HEIGHT, payload: newHeight }),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Preview);

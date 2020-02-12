@@ -1,10 +1,3 @@
-export const languageTypes = {
-  JS: { name: 'JavaScript', code: 'js' },
-  CSS: { name: 'CSS', code: 'css' },
-  MARKUP: { name: 'Markup', code: 'markup' },
-  C_Like: { name: 'C-like', code: 'clike' },
-};
-
 export const actionTypes = {
   INPUT: 'INPUT',
   ANGLE: 'ANGLE',
@@ -20,6 +13,14 @@ export const actionTypes = {
   TITLE_BAR: 'TITLE_BAR',
   FONT: 'FONT',
 };
+
+export const languageTypes = {
+  JS: { name: 'JavaScript', code: 'js' },
+  CSS: { name: 'CSS', code: 'css' },
+  MARKUP: { name: 'Markup', code: 'markup' },
+  C_Like: { name: 'C-like', code: 'clike' },
+};
+
 
 export const pluginTypes = {
   NONE: { name: '', code: '' },
